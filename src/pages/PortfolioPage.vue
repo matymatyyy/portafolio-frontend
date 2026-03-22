@@ -5,6 +5,7 @@ import { projectService } from '@/services/projectService'
 import { visitService } from '@/services/visitService'
 import { contactService } from '@/services/contactService'
 import type { Project } from '@/types/project'
+import avatarImg from '@/assets/avatar.png'
 
 const activeSection = ref('hero')
 const navOpen = ref(false)
@@ -214,7 +215,7 @@ function onScroll() {
     <div class="pf-container pf-about__grid">
       <div class="pf-about__photo">
         <div class="pf-about__avatar-wrap">
-          <div class="pf-about__avatar">MD</div>
+          <img :src="avatarImg" alt="Matias Dominguez" class="pf-about__avatar" />
         </div>
       </div>
       <div class="pf-about__body">
@@ -601,26 +602,9 @@ function onScroll() {
   width: 100%;
   height: 100%;
   border-radius: 24px;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
-    linear-gradient(135deg, var(--accent) 0%, #7c3aed 50%, #4f46e5 100%);
-  color: #fff;
-  font-size: 3rem;
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;
   position: relative;
   box-shadow: 0 20px 60px rgba(91, 33, 182, 0.3);
-  overflow: hidden;
-}
-.pf-about__avatar::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  border: 2px solid rgba(255,255,255,0.15);
 }
 .pf-about__text {
   color: var(--fg-muted);
