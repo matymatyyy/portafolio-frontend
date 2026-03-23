@@ -147,5 +147,8 @@ async function sendContact() {
 
 @media (max-width: 768px) {
   .pf-form__row { grid-template-columns: 1fr; }
+  .pf-contact__sub { font-size: 0.9375rem; margin: -1rem 0 1rem; }
+  .pf-form__input { padding: 0.75rem 1rem; font-size: 1rem; }
+  .pf-contact__email { font-size: 0.875rem; word-break: break-all; }
 }
 </style>

@@ -110,5 +110,16 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
 @media (max-width: 768px) {
   .pf-about__grid { grid-template-columns: 1fr; gap: 2rem; }
   .pf-about__photo { order: -1; }
+  .pf-about__avatar-wrap { width: 160px; height: 160px; }
+  .pf-about__body { text-align: center; }
+  .pf-about__stats { justify-content: center; }
+  .pf-about__cv { justify-content: center; }
+  .pf-about__text { font-size: 0.9375rem; }
+}
+
+@media (max-width: 480px) {
+  .pf-about__avatar-wrap { width: 130px; height: 130px; }
+  .pf-about__stats { gap: 1.5rem; }
+  .pf-stat__value { font-size: 1.625rem; }
 }
 </style>

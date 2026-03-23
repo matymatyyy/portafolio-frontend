@@ -180,4 +180,12 @@ onMounted(async () => {
 @media (max-width: 1024px) {
   .pf-projects__grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+@media (max-width: 640px) {
+  .pf-projects__grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .pf-project-card__thumb { height: 130px; }
+  .pf-project-card__thumb-letter { font-size: 3rem; }
+  .pf-project-card__body { padding: 1rem; }
+  .pf-project-card__desc { font-size: 0.875rem; }
+}
 </style>

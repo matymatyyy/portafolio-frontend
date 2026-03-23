@@ -64,7 +64,7 @@ function scrollTo(id: string) {
   color: var(--fg-muted);
   line-height: 1.7;
 }
-.pf-hero__actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+.pf-hero__actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; padding: 0 1rem; }
 .pf-hero__scroll {
   position: absolute;
   bottom: 2rem;
@@ -84,5 +84,19 @@ function scrollTo(id: string) {
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
   50% { opacity: 1; transform: scaleY(1); }
+}
+
+@media (max-width: 768px) {
+  .pf-hero { min-height: calc(100vh - 64px); min-height: calc(100dvh - 64px); }
+  .pf-hero__inner { padding: 0 0.5rem; }
+  .pf-hero__eyebrow { font-size: 0.875rem; }
+  .pf-hero__sub { font-size: 0.9375rem; line-height: 1.6; margin-bottom: 2rem; padding: 0 0.5rem; }
+  .pf-hero__scroll { bottom: 1.25rem; }
+  .pf-hero__scroll-line { height: 36px; }
+}
+
+@media (max-width: 480px) {
+  .pf-hero__actions { flex-direction: column; width: 100%; gap: 0.625rem; }
+  .pf-hero__actions .pf-btn { width: 100%; justify-content: center; padding: 0.75rem 1.5rem; }
 }
 </style>

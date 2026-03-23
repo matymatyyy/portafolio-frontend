@@ -129,4 +129,15 @@ h1, h2, h3, h4 { line-height: 1.25; }
 
 @media (max-width: 768px) {
   .pf-section { padding: 64px 0; }
+  .pf-container { padding: 0 1.25rem; }
+  .pf-section__title { margin-bottom: 2rem; }
+  .pf-btn { padding: 0.75rem 1.5rem; font-size: 1rem; }
+  .pf-btn--sm { padding: 0.5rem 1rem; font-size: 0.9375rem; }
+}
+
+@media (max-width: 480px) {
+  .pf-section { padding: 48px 0; }
+  .pf-container { padding: 0 1rem; }
+  .pf-section__title { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 1.5rem; }
+  .pf-section__label { font-size: 0.75rem; }
 }

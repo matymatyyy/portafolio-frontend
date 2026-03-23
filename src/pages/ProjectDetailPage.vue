@@ -330,7 +330,18 @@ function goBack() {
 
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
-  .pd-body { grid-template-columns: 1fr; }
-  .pd-hero__thumb { height: 200px; }
+  .pd-main { padding: 1.5rem 1.25rem 3rem; }
+  .pd-body { grid-template-columns: 1fr; gap: 2rem; }
+  .pd-hero__thumb { height: 200px; margin-bottom: 1.5rem; }
+  .pd-back { margin-bottom: 1.25rem; }
+  .pd-sidebar { order: -1; }
+}
+
+@media (max-width: 480px) {
+  .pd-main { padding: 1.25rem 1rem 2.5rem; }
+  .pd-hero__thumb { height: 160px; border-radius: 10px; }
+  .pd-title { margin-bottom: 1rem; }
+  .pd-desc { font-size: 1rem; }
+  .pd-link-btn { padding: 0.75rem 1rem; font-size: 0.9375rem; }
 }
 </style>

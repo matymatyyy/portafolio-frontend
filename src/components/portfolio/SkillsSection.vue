@@ -115,4 +115,9 @@ const skillCategories = [
 @media (max-width: 1024px) {
   .pf-skills__grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+@media (max-width: 580px) {
+  .pf-skills__grid { grid-template-columns: 1fr; }
+  .pf-skill-card { padding: 1.25rem; }
+}
 </style>

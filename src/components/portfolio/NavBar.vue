@@ -116,19 +116,39 @@ function scrollTo(id: string) {
 
 @media (max-width: 768px) {
   .pf-nav__links {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: fixed;
     top: 64px; left: 0; right: 0;
-    background: #fff;
-    padding: 1rem;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(16px);
+    padding: 0.75rem 1rem 1rem;
     border-bottom: 1px solid var(--border);
     box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     gap: 0.25rem;
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
   }
-  .pf-nav__links--open { display: flex; }
-  .pf-nav__link { width: 100%; text-align: left; padding: 0.625rem 0.75rem; }
+  .pf-nav__links--open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .pf-nav__link {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
   .pf-nav__burger { display: flex; }
-  .pf-btn--sm { width: 100%; justify-content: center; }
+  .pf-btn--sm {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+  }
 }
 </style>
