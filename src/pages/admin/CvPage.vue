@@ -69,8 +69,8 @@ async function handleFile(file: File) {
   try {
     currentCv.value = await cvService.upload(file)
     success.value = 'CV uploaded successfully.'
-  } catch (err: any) {
-    error.value = err.response?.data?.message ?? err.message ?? 'Upload failed.'
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Upload failed.'
   } finally {
     uploading.value = false
     if (fileInput.value) fileInput.value.value = ''

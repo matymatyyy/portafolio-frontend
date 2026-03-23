@@ -2,9 +2,8 @@ import axios, { type AxiosInstance, type AxiosRequestConfig, AxiosError } from '
 import type { ApiError } from '@/types/api'
 
 const http: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL as string,
-  headers: { 'Content-Type': 'application/json' },
-  timeout: 20_000,
+  baseURL: import.meta.env.PROD ? (import.meta.env.VITE_API_URL as string) : '',
+  timeout: 30_000,
 })
 
 // Attach JWT on every request if present
@@ -36,13 +35,13 @@ export async function get<T>(url: string, config?: AxiosRequestConfig): Promise<
   return data
 }
 
-export async function post<T>(url: string, payload?: unknown): Promise<T> {
-  const { data } = await http.post<T>(url, payload)
+export async function post<T>(url: string, payload?: unknown, config?: AxiosRequestConfig): Promise<T> {
+  const { data } = await http.post<T>(url, payload, config)
   return data
 }
 
-export async function put<T>(url: string, payload?: unknown): Promise<T> {
-  const { data } = await http.put<T>(url, payload)
+export async function put<T>(url: string, payload?: unknown, config?: AxiosRequestConfig): Promise<T> {
+  const { data } = await http.put<T>(url, payload, config)
   return data
 }
 

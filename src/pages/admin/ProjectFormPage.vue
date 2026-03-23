@@ -70,9 +70,9 @@ async function submit() {
     const payload = {
       title: form.value.title,
       description: form.value.description,
-      imageUrl: form.value.imageUrl || null,
-      projectUrl: form.value.projectUrl || null,
-      repoUrl: form.value.repoUrl || null,
+      image_url: form.value.imageUrl || null,
+      project_url: form.value.projectUrl || null,
+      repo_url: form.value.repoUrl || null,
       technologies: parseTechnologies(),
       status: form.value.status,
     }

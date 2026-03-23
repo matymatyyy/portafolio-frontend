@@ -29,7 +29,7 @@ function goBack() {
 </script>
 
 <template>
-  <div class="pd-page">
+  <div id="main-content" class="pd-page">
     <!-- ── NAV ── -->
     <header class="pd-nav">
       <div class="pd-container pd-nav__inner">
@@ -57,7 +57,10 @@ function goBack() {
         </button>
 
         <div class="pd-hero">
-          <div class="pd-hero__thumb" />
+          <div
+            class="pd-hero__thumb"
+            :style="project.image_url ? { backgroundImage: `url(${project.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined"
+          />
         </div>
 
         <div class="pd-body">
@@ -132,10 +135,7 @@ function goBack() {
   color: var(--fg);
 }
 
-:global(*, *::before, *::after) { box-sizing: border-box; }
-:global(body) { margin: 0; }
-:global(button) { cursor: pointer; font: inherit; border: none; background: none; }
-:global(a) { text-decoration: none; color: inherit; }
+/* Global resets are in global.css */
 
 /* ─── Container ─── */
 .pd-container {

@@ -20,7 +20,7 @@ export function useAuth() {
       localStorage.setItem('token', jwt)
       await router.push({ name: 'admin-projects' })
     } catch {
-      error.value = 'Usuario o contraseña incorrectos'
+      error.value = 'Invalid username or password'
     } finally {
       loading.value = false
     }
