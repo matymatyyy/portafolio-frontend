@@ -3,7 +3,7 @@ import type { ApiError } from '@/types/api'
 
 const http: AxiosInstance = axios.create({
   baseURL: import.meta.env.PROD ? (import.meta.env.VITE_API_URL as string) : '',
-  timeout: 30_000,
+  timeout: 60_000,
 })
 
 // Attach JWT on every request if present
