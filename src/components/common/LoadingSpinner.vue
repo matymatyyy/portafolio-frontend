@@ -3,7 +3,11 @@ defineProps<{ size?: 'sm' | 'md' | 'lg' }>()
 </script>
 
 <template>
-  <div :class="['spinner', `spinner--${size ?? 'md'}`]" role="status" aria-label="Loading" />
+  <div
+    :class="['spinner', `spinner--${size ?? 'md'}`]"
+    role="status"
+    aria-label="Loading"
+  />
 </template>
 
 <style scoped>

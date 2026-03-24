@@ -36,41 +36,135 @@ async function sendContact() {
 </script>
 
 <template>
-  <section id="contact" class="pf-section pf-contact">
+  <section
+    id="contact"
+    class="pf-section pf-contact"
+  >
     <div class="pf-container pf-contact__inner">
-      <p class="pf-section__label pf-section__label--center">Let's work together</p>
-      <h2 class="pf-section__title pf-section__title--center">Get in Touch</h2>
+      <p class="pf-section__label pf-section__label--center">
+        Let's work together
+      </p>
+      <h2 class="pf-section__title pf-section__title--center">
+        Get in Touch
+      </h2>
       <p class="pf-contact__sub">
         Have a project in mind or just want to say hi? My inbox is always open.
       </p>
-      <a href="mailto:matydominguez554@gmail.com" class="pf-contact__email">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a
+        href="mailto:matydominguez554@gmail.com"
+        class="pf-contact__email"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        ><rect
+          x="2"
+          y="4"
+          width="20"
+          height="16"
+          rx="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        /><path
+          d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        /></svg>
         matydominguez554@gmail.com
       </a>
 
-      <p v-if="success" class="pf-form__success" role="status">Message sent successfully!</p>
-      <p v-if="error" class="pf-form__error" role="alert">{{ error }}</p>
+      <p
+        v-if="success"
+        class="pf-form__success"
+        role="status"
+      >
+        Message sent successfully!
+      </p>
+      <p
+        v-if="error"
+        class="pf-form__error"
+        role="alert"
+      >
+        {{ error }}
+      </p>
 
-      <form class="pf-form" @submit.prevent="sendContact">
+      <form
+        class="pf-form"
+        @submit.prevent="sendContact"
+      >
         <div class="pf-form__row">
           <div class="pf-form__field">
-            <label class="pf-form__label" for="cf-name">Name</label>
-            <input id="cf-name" v-model="form.name" class="pf-form__input" type="text" placeholder="Your name" required minlength="2" maxlength="100" />
+            <label
+              class="pf-form__label"
+              for="cf-name"
+            >Name</label>
+            <input
+              id="cf-name"
+              v-model="form.name"
+              class="pf-form__input"
+              type="text"
+              placeholder="Your name"
+              required
+              minlength="2"
+              maxlength="100"
+            >
           </div>
           <div class="pf-form__field">
-            <label class="pf-form__label" for="cf-email">Email</label>
-            <input id="cf-email" v-model="form.email" class="pf-form__input" type="email" placeholder="your@email.com" required />
+            <label
+              class="pf-form__label"
+              for="cf-email"
+            >Email</label>
+            <input
+              id="cf-email"
+              v-model="form.email"
+              class="pf-form__input"
+              type="email"
+              placeholder="your@email.com"
+              required
+            >
           </div>
         </div>
         <div class="pf-form__field">
-          <label class="pf-form__label" for="cf-subject">Subject</label>
-          <input id="cf-subject" v-model="form.subject" class="pf-form__input" type="text" placeholder="What's this about?" required minlength="2" maxlength="200" />
+          <label
+            class="pf-form__label"
+            for="cf-subject"
+          >Subject</label>
+          <input
+            id="cf-subject"
+            v-model="form.subject"
+            class="pf-form__input"
+            type="text"
+            placeholder="What's this about?"
+            required
+            minlength="2"
+            maxlength="200"
+          >
         </div>
         <div class="pf-form__field">
-          <label class="pf-form__label" for="cf-message">Message</label>
-          <textarea id="cf-message" v-model="form.message" class="pf-form__input pf-form__textarea" placeholder="Tell me about your project..." rows="5" required minlength="10" maxlength="5000" />
+          <label
+            class="pf-form__label"
+            for="cf-message"
+          >Message</label>
+          <textarea
+            id="cf-message"
+            v-model="form.message"
+            class="pf-form__input pf-form__textarea"
+            placeholder="Tell me about your project..."
+            rows="5"
+            required
+            minlength="10"
+            maxlength="5000"
+          />
         </div>
-        <button type="submit" class="pf-btn pf-btn--full" :disabled="sending">
+        <button
+          type="submit"
+          class="pf-btn pf-btn--full"
+          :disabled="sending"
+        >
           {{ sending ? 'Sending...' : 'Send message' }}
         </button>
       </form>

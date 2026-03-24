@@ -59,17 +59,34 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section id="projects" class="pf-section pf-projects">
+  <section
+    id="projects"
+    class="pf-section pf-projects"
+  >
     <div class="pf-container">
-      <p class="pf-section__label pf-section__label--center">What I've built</p>
-      <h2 class="pf-section__title pf-section__title--center">Selected Projects</h2>
+      <p class="pf-section__label pf-section__label--center">
+        What I've built
+      </p>
+      <h2 class="pf-section__title pf-section__title--center">
+        Selected Projects
+      </h2>
 
-      <div v-if="loading" class="pf-projects__loading">
+      <div
+        v-if="loading"
+        class="pf-projects__loading"
+      >
         <span class="pf-projects__spinner" />
       </div>
 
-      <div v-else class="pf-projects__grid">
-        <article v-for="project in visibleProjects" :key="project.id" class="pf-project-card">
+      <div
+        v-else
+        class="pf-projects__grid"
+      >
+        <article
+          v-for="project in visibleProjects"
+          :key="project.id"
+          class="pf-project-card"
+        >
           <div
             class="pf-project-card__thumb"
             aria-hidden="true"
@@ -78,10 +95,18 @@ onMounted(async () => {
             <span class="pf-project-card__thumb-letter">{{ project.title.charAt(0) }}</span>
           </div>
           <div class="pf-project-card__body">
-            <h3 class="pf-project-card__title">{{ project.title }}</h3>
-            <p class="pf-project-card__desc">{{ project.description }}</p>
+            <h3 class="pf-project-card__title">
+              {{ project.title }}
+            </h3>
+            <p class="pf-project-card__desc">
+              {{ project.description }}
+            </p>
             <div class="pf-project-card__tags">
-              <span v-for="tech in project.technologies" :key="tech" class="pf-tag">{{ tech }}</span>
+              <span
+                v-for="tech in project.technologies"
+                :key="tech"
+                class="pf-tag"
+              >{{ tech }}</span>
             </div>
           </div>
           <RouterLink
@@ -90,15 +115,34 @@ onMounted(async () => {
             :aria-label="`View details for ${project.title}`"
           >
             View details
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M5 12h14M12 5l7 7-7 7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </RouterLink>
         </article>
       </div>
 
-      <div v-if="hasMore" class="pf-projects__more">
-        <button class="pf-btn pf-btn--outline" @click="showMore">Show more projects</button>
+      <div
+        v-if="hasMore"
+        class="pf-projects__more"
+      >
+        <button
+          class="pf-btn pf-btn--outline"
+          @click="showMore"
+        >
+          Show more projects
+        </button>
       </div>
     </div>
   </section>

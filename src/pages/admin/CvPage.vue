@@ -83,41 +83,95 @@ async function handleFile(file: File) {
   <div class="cv">
     <div class="cv__header">
       <div>
-        <h1 class="cv__title">Curriculum Vitae</h1>
-        <p class="cv__sub">Upload or replace your CV. Visitors can download it from the portfolio.</p>
+        <h1 class="cv__title">
+          Curriculum Vitae
+        </h1>
+        <p class="cv__sub">
+          Upload or replace your CV. Visitors can download it from the portfolio.
+        </p>
       </div>
     </div>
 
-    <div v-if="loading" class="cv__loading">
+    <div
+      v-if="loading"
+      class="cv__loading"
+    >
       <span class="cv__spinner" />
     </div>
     <div v-else>
       <!-- Current CV info -->
-      <div v-if="currentCv" class="cv__current">
+      <div
+        v-if="currentCv"
+        class="cv__current"
+      >
         <div class="cv__file-icon">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5b21b6" stroke-width="1.5">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#5b21b6"
+            stroke-width="1.5"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M14 2v6h6M16 13H8M16 17H8M10 9H8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </div>
         <div class="cv__file-info">
-          <p class="cv__filename">{{ currentCv.original_filename }}</p>
+          <p class="cv__filename">
+            {{ currentCv.original_filename }}
+          </p>
           <p class="cv__file-meta">
             {{ formatSize(currentCv.file_size) }}
-            <template v-if="currentCv.uploaded_at"> &middot; Uploaded {{ formatDate(currentCv.uploaded_at) }}</template>
+            <template v-if="currentCv.uploaded_at">
+              &middot; Uploaded {{ formatDate(currentCv.uploaded_at) }}
+            </template>
           </p>
         </div>
-        <a :href="cvService.downloadUrl()" target="_blank" class="cv__download-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/>
+        <a
+          :href="cvService.downloadUrl()"
+          target="_blank"
+          class="cv__download-btn"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
           Preview
         </a>
       </div>
 
       <!-- Messages -->
-      <div v-if="error" class="cv__msg cv__msg--error">{{ error }}</div>
-      <div v-if="success" class="cv__msg cv__msg--success">{{ success }}</div>
+      <div
+        v-if="error"
+        class="cv__msg cv__msg--error"
+      >
+        {{ error }}
+      </div>
+      <div
+        v-if="success"
+        class="cv__msg cv__msg--success"
+      >
+        {{ success }}
+      </div>
 
       <!-- Upload area -->
       <div
@@ -134,19 +188,38 @@ async function handleFile(file: File) {
           accept=".pdf,.doc,.docx"
           class="cv__file-input"
           @change="onFileSelected"
-        />
-        <div v-if="uploading" class="cv__uploading">
+        >
+        <div
+          v-if="uploading"
+          class="cv__uploading"
+        >
           <span class="cv__spinner" />
           <p>Uploading...</p>
         </div>
-        <div v-else class="cv__dropzone-content">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke-linecap="round" stroke-linejoin="round"/>
+        <div
+          v-else
+          class="cv__dropzone-content"
+        >
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#9ca3af"
+            stroke-width="1.5"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
           <p class="cv__dropzone-text">
             <span class="cv__dropzone-link">Click to select</span> or drag and drop
           </p>
-          <p class="cv__dropzone-hint">PDF, DOC, DOCX — max 10 MB</p>
+          <p class="cv__dropzone-hint">
+            PDF, DOC, DOCX — max 10 MB
+          </p>
         </div>
       </div>
     </div>

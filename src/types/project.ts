@@ -22,7 +22,7 @@ export interface CreateProjectPayload {
   status: 'active' | 'archived'
 }
 
-export interface UpdateProjectPayload extends CreateProjectPayload {}
+export type UpdateProjectPayload = CreateProjectPayload
 
 export interface ProjectFilters {
   title?: string

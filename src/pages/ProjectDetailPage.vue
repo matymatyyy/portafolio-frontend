@@ -29,29 +29,62 @@ function goBack() {
 </script>
 
 <template>
-  <div id="main-content" class="pd-page">
+  <div
+    id="main-content"
+    class="pd-page"
+  >
     <!-- ── NAV ── -->
     <header class="pd-nav">
       <div class="pd-container pd-nav__inner">
-        <button class="pd-nav__logo" @click="router.push('/')">maty.</button>
+        <button
+          class="pd-nav__logo"
+          @click="router.push('/')"
+        >
+          maty.
+        </button>
       </div>
     </header>
 
     <!-- ── CONTENT ── -->
     <main class="pd-main pd-container">
-      <div v-if="loading" class="pd-loading">
+      <div
+        v-if="loading"
+        class="pd-loading"
+      >
         <span class="pd-spinner" />
       </div>
 
-      <div v-else-if="error" class="pd-error">
+      <div
+        v-else-if="error"
+        class="pd-error"
+      >
         <p>{{ error }}</p>
-        <button class="pd-btn pd-btn--outline" @click="goBack">← Back to portfolio</button>
+        <button
+          class="pd-btn pd-btn--outline"
+          @click="goBack"
+        >
+          ← Back to portfolio
+        </button>
       </div>
 
       <template v-else-if="project">
-        <button class="pd-back" @click="goBack">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" />
+        <button
+          class="pd-back"
+          @click="goBack"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M19 12H5M12 19l-7-7 7-7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
           Back to projects
         </button>
@@ -66,15 +99,25 @@ function goBack() {
         <div class="pd-body">
           <div class="pd-body__main">
             <div class="pd-tags">
-              <span v-for="tech in project.technologies" :key="tech" class="pd-tag">{{ tech }}</span>
+              <span
+                v-for="tech in project.technologies"
+                :key="tech"
+                class="pd-tag"
+              >{{ tech }}</span>
             </div>
-            <h1 class="pd-title">{{ project.title }}</h1>
-            <p class="pd-desc">{{ project.description }}</p>
+            <h1 class="pd-title">
+              {{ project.title }}
+            </h1>
+            <p class="pd-desc">
+              {{ project.description }}
+            </p>
           </div>
 
           <aside class="pd-sidebar">
             <div class="pd-card">
-              <p class="pd-card__label">Links</p>
+              <p class="pd-card__label">
+                Links
+              </p>
               <a
                 v-if="project.project_url"
                 :href="project.project_url"
@@ -82,10 +125,32 @@ function goBack() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" stroke-linecap="round" stroke-linejoin="round" />
-                  <polyline points="15 3 21 3 21 9" stroke-linecap="round" stroke-linejoin="round" />
-                  <line x1="10" y1="14" x2="21" y2="3" stroke-linecap="round" stroke-linejoin="round" />
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <polyline
+                    points="15 3 21 3 21 9"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <line
+                    x1="10"
+                    y1="14"
+                    x2="21"
+                    y2="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
                 Live demo
               </a>
@@ -96,17 +161,38 @@ function goBack() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke-linecap="round" stroke-linejoin="round" />
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
                 Source code
               </a>
-              <p v-if="!project.project_url && !project.repo_url" class="pd-card__empty">No links available.</p>
+              <p
+                v-if="!project.project_url && !project.repo_url"
+                class="pd-card__empty"
+              >
+                No links available.
+              </p>
             </div>
 
             <div class="pd-card">
-              <p class="pd-card__label">Status</p>
-              <span class="pd-status" :class="`pd-status--${project.status}`">
+              <p class="pd-card__label">
+                Status
+              </p>
+              <span
+                class="pd-status"
+                :class="`pd-status--${project.status}`"
+              >
                 {{ project.status === 'active' ? 'Active' : 'Archived' }}
               </span>
             </div>

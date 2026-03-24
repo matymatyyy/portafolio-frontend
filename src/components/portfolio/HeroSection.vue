@@ -6,20 +6,43 @@ function scrollTo(id: string) {
 </script>
 
 <template>
-  <section id="hero" class="pf-hero" role="main">
+  <section
+    id="hero"
+    class="pf-hero"
+    role="main"
+  >
     <div class="pf-hero__inner pf-container">
-      <p class="pf-hero__eyebrow">Hello, I'm</p>
-      <h1 class="pf-hero__name">Matias Dominguez</h1>
-      <h2 class="pf-hero__title">Full Stack Developer</h2>
+      <p class="pf-hero__eyebrow">
+        Hello, I'm
+      </p>
+      <h1 class="pf-hero__name">
+        Matias Dominguez
+      </h1>
+      <h2 class="pf-hero__title">
+        Full Stack Developer
+      </h2>
       <p class="pf-hero__sub">
         Specialized in clean architecture and scalable backends with PHP/Symfony, paired with modern Vue.js interfaces. Focused on code quality, testing, and delivering products that last.
       </p>
       <div class="pf-hero__actions">
-        <button class="pf-btn" @click="scrollTo('projects')">View my work</button>
-        <button class="pf-btn pf-btn--outline" @click="scrollTo('contact')">Get in touch</button>
+        <button
+          class="pf-btn"
+          @click="scrollTo('projects')"
+        >
+          View my work
+        </button>
+        <button
+          class="pf-btn pf-btn--outline"
+          @click="scrollTo('contact')"
+        >
+          Get in touch
+        </button>
       </div>
     </div>
-    <div class="pf-hero__scroll" aria-hidden="true">
+    <div
+      class="pf-hero__scroll"
+      aria-hidden="true"
+    >
       <span class="pf-hero__scroll-line" />
     </div>
   </section>

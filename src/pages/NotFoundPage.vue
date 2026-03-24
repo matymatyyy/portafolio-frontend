@@ -5,9 +5,18 @@ const router = useRouter()
 
 <template>
   <div class="not-found">
-    <h1 class="not-found__code">404</h1>
-    <p class="not-found__msg">Page not found.</p>
-    <button class="not-found__btn" @click="router.push('/')">Go home</button>
+    <h1 class="not-found__code">
+      404
+    </h1>
+    <p class="not-found__msg">
+      Page not found.
+    </p>
+    <button
+      class="not-found__btn"
+      @click="router.push('/')"
+    >
+      Go home
+    </button>
   </div>
 </template>
 

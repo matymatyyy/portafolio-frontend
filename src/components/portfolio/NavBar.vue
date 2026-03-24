@@ -23,9 +23,17 @@ function scrollTo(id: string) {
 </script>
 
 <template>
-  <header class="pf-nav" :class="{ 'pf-nav--scrolled': scrolled }">
+  <header
+    class="pf-nav"
+    :class="{ 'pf-nav--scrolled': scrolled }"
+  >
     <div class="pf-nav__inner">
-      <button class="pf-nav__logo" @click="scrollTo('hero')">maty.</button>
+      <button
+        class="pf-nav__logo"
+        @click="scrollTo('hero')"
+      >
+        maty.
+      </button>
 
       <nav
         id="main-nav"
@@ -42,7 +50,12 @@ function scrollTo(id: string) {
         >
           {{ link.label }}
         </button>
-        <button class="pf-btn pf-btn--sm" @click="scrollTo('contact')">Hire me</button>
+        <button
+          class="pf-btn pf-btn--sm"
+          @click="scrollTo('contact')"
+        >
+          Hire me
+        </button>
       </nav>
 
       <button

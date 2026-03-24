@@ -13,7 +13,10 @@ defineProps<{
     :disabled="disabled || loading"
     :type="type ?? 'button'"
   >
-    <span v-if="loading" class="btn__spinner" />
+    <span
+      v-if="loading"
+      class="btn__spinner"
+    />
     <slot />
   </button>
 </template>

@@ -93,55 +93,108 @@ async function submit() {
 <template>
   <div class="page">
     <div class="page__header">
-      <h1 class="page__title">{{ isEditing ? 'Edit Project' : 'New Project' }}</h1>
-      <p class="page__sub">{{ isEditing ? 'Update project details' : 'Add a new project to your portfolio' }}</p>
+      <h1 class="page__title">
+        {{ isEditing ? 'Edit Project' : 'New Project' }}
+      </h1>
+      <p class="page__sub">
+        {{ isEditing ? 'Update project details' : 'Add a new project to your portfolio' }}
+      </p>
     </div>
 
-    <div v-if="fetching" class="page__loading">
+    <div
+      v-if="fetching"
+      class="page__loading"
+    >
       <LoadingSpinner size="lg" />
     </div>
 
-    <div v-else class="form-card">
-      <form class="form" @submit.prevent="submit">
-        <div v-if="serverError" class="alert alert--error">{{ serverError }}</div>
+    <div
+      v-else
+      class="form-card"
+    >
+      <form
+        class="form"
+        @submit.prevent="submit"
+      >
+        <div
+          v-if="serverError"
+          class="alert alert--error"
+        >
+          {{ serverError }}
+        </div>
 
-      <AppInput v-model="form.title" label="Title" placeholder="My awesome project" :error="errors.title" />
-
-      <div class="field">
-        <label class="field__label">Description</label>
-        <textarea
-          v-model="form.description"
-          class="field__textarea"
-          :class="{ 'field__textarea--error': errors.description }"
-          placeholder="Brief description of the project…"
-          rows="3"
+        <AppInput
+          v-model="form.title"
+          label="Title"
+          placeholder="My awesome project"
+          :error="errors.title"
         />
-        <span v-if="errors.description" class="field__error">{{ errors.description }}</span>
-      </div>
 
-      <AppInput v-model="form.imageUrl" label="Image URL (optional)" placeholder="https://example.com/image.png" />
-      <AppInput v-model="form.projectUrl" label="Project URL (optional)" placeholder="https://myproject.com" />
-      <AppInput v-model="form.repoUrl" label="Repository URL (optional)" placeholder="https://github.com/user/repo" />
+        <div class="field">
+          <label class="field__label">Description</label>
+          <textarea
+            v-model="form.description"
+            class="field__textarea"
+            :class="{ 'field__textarea--error': errors.description }"
+            placeholder="Brief description of the project…"
+            rows="3"
+          />
+          <span
+            v-if="errors.description"
+            class="field__error"
+          >{{ errors.description }}</span>
+        </div>
 
-      <AppInput
-        v-model="form.technologies"
-        label="Technologies (comma separated)"
-        placeholder="Vue 3, TypeScript, Tailwind"
-      />
+        <AppInput
+          v-model="form.imageUrl"
+          label="Image URL (optional)"
+          placeholder="https://example.com/image.png"
+        />
+        <AppInput
+          v-model="form.projectUrl"
+          label="Project URL (optional)"
+          placeholder="https://myproject.com"
+        />
+        <AppInput
+          v-model="form.repoUrl"
+          label="Repository URL (optional)"
+          placeholder="https://github.com/user/repo"
+        />
 
-      <div class="field">
-        <label class="field__label">Status</label>
-        <select v-model="form.status" class="field__select">
-          <option value="active">Active</option>
-          <option value="archived">Archived</option>
-        </select>
-      </div>
+        <AppInput
+          v-model="form.technologies"
+          label="Technologies (comma separated)"
+          placeholder="Vue 3, TypeScript, Tailwind"
+        />
+
+        <div class="field">
+          <label class="field__label">Status</label>
+          <select
+            v-model="form.status"
+            class="field__select"
+          >
+            <option value="active">
+              Active
+            </option>
+            <option value="archived">
+              Archived
+            </option>
+          </select>
+        </div>
 
         <div class="form__actions">
-          <AppButton type="submit" :loading="loading">
+          <AppButton
+            type="submit"
+            :loading="loading"
+          >
             {{ isEditing ? 'Save Changes' : 'Create Project' }}
           </AppButton>
-          <AppButton variant="secondary" @click="$router.back()">Cancel</AppButton>
+          <AppButton
+            variant="secondary"
+            @click="$router.back()"
+          >
+            Cancel
+          </AppButton>
         </div>
       </form>
     </div>

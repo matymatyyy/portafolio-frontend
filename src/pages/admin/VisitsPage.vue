@@ -45,8 +45,12 @@ function formatReferrer(ref: string): string {
     <!-- Header -->
     <div class="visits__header">
       <div>
-        <h1 class="visits__title">Visitors</h1>
-        <p class="visits__sub">Traffic analytics for your portfolio</p>
+        <h1 class="visits__title">
+          Visitors
+        </h1>
+        <p class="visits__sub">
+          Traffic analytics for your portfolio
+        </p>
       </div>
       <div class="visits__filters">
         <button
@@ -62,43 +66,73 @@ function formatReferrer(ref: string): string {
     </div>
 
     <!-- Loading -->
-    <div v-if="loading" class="visits__loading">
+    <div
+      v-if="loading"
+      class="visits__loading"
+    >
       <span class="visits__spinner" />
     </div>
 
     <!-- Error -->
-    <div v-else-if="error" class="visits__error">
+    <div
+      v-else-if="error"
+      class="visits__error"
+    >
       {{ error }}
-      <button class="visits__retry" @click="fetchStats">Retry</button>
+      <button
+        class="visits__retry"
+        @click="fetchStats"
+      >
+        Retry
+      </button>
     </div>
 
     <template v-else-if="stats">
       <!-- Stat cards -->
       <div class="visits__cards">
         <div class="stat-card">
-          <p class="stat-card__label">Total Visits</p>
-          <p class="stat-card__value">{{ stats.total_visits.toLocaleString() }}</p>
+          <p class="stat-card__label">
+            Total Visits
+          </p>
+          <p class="stat-card__value">
+            {{ stats.total_visits.toLocaleString() }}
+          </p>
         </div>
         <div class="stat-card">
-          <p class="stat-card__label">Unique Visitors</p>
-          <p class="stat-card__value">{{ stats.unique_visitors.toLocaleString() }}</p>
+          <p class="stat-card__label">
+            Unique Visitors
+          </p>
+          <p class="stat-card__value">
+            {{ stats.unique_visitors.toLocaleString() }}
+          </p>
         </div>
         <div class="stat-card">
-          <p class="stat-card__label">Avg. per Day</p>
+          <p class="stat-card__label">
+            Avg. per Day
+          </p>
           <p class="stat-card__value">
             {{ stats.visits_by_day.length ? Math.round(stats.total_visits / stats.visits_by_day.length).toLocaleString() : '—' }}
           </p>
         </div>
         <div class="stat-card">
-          <p class="stat-card__label">Pages Tracked</p>
-          <p class="stat-card__value">{{ Object.keys(stats.visits_by_page).length }}</p>
+          <p class="stat-card__label">
+            Pages Tracked
+          </p>
+          <p class="stat-card__value">
+            {{ Object.keys(stats.visits_by_page).length }}
+          </p>
         </div>
       </div>
 
       <!-- Daily bar chart -->
       <div class="visits__panel">
-        <p class="visits__panel-title">Visits per Day</p>
-        <div v-if="stats.visits_by_day.length" class="chart">
+        <p class="visits__panel-title">
+          Visits per Day
+        </p>
+        <div
+          v-if="stats.visits_by_day.length"
+          class="chart"
+        >
           <div class="chart__bars">
             <div
               v-for="day in stats.visits_by_day"
@@ -115,53 +149,92 @@ function formatReferrer(ref: string): string {
             </div>
           </div>
         </div>
-        <p v-else class="visits__empty">No data for this period.</p>
+        <p
+          v-else
+          class="visits__empty"
+        >
+          No data for this period.
+        </p>
       </div>
 
       <!-- Pages + Referrers -->
       <div class="visits__grid2">
         <!-- By page -->
         <div class="visits__panel">
-          <p class="visits__panel-title">Top Pages</p>
-          <table v-if="pageRows.length" class="visits__table">
+          <p class="visits__panel-title">
+            Top Pages
+          </p>
+          <table
+            v-if="pageRows.length"
+            class="visits__table"
+          >
             <thead>
               <tr>
                 <th>Page</th>
-                <th class="visits__table-num">Visits</th>
+                <th class="visits__table-num">
+                  Visits
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="[page, count] in pageRows" :key="page">
-                <td class="visits__table-path">{{ page }}</td>
+              <tr
+                v-for="[page, count] in pageRows"
+                :key="page"
+              >
+                <td class="visits__table-path">
+                  {{ page }}
+                </td>
                 <td class="visits__table-num">
                   <span class="visits__badge">{{ count.toLocaleString() }}</span>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p v-else class="visits__empty">No page data yet.</p>
+          <p
+            v-else
+            class="visits__empty"
+          >
+            No page data yet.
+          </p>
         </div>
 
         <!-- Top referrers -->
         <div class="visits__panel">
-          <p class="visits__panel-title">Top Referrers</p>
-          <table v-if="referrerRows.length" class="visits__table">
+          <p class="visits__panel-title">
+            Top Referrers
+          </p>
+          <table
+            v-if="referrerRows.length"
+            class="visits__table"
+          >
             <thead>
               <tr>
                 <th>Source</th>
-                <th class="visits__table-num">Visits</th>
+                <th class="visits__table-num">
+                  Visits
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="row in referrerRows" :key="row.referrer">
-                <td class="visits__table-path">{{ formatReferrer(row.referrer) }}</td>
+              <tr
+                v-for="row in referrerRows"
+                :key="row.referrer"
+              >
+                <td class="visits__table-path">
+                  {{ formatReferrer(row.referrer) }}
+                </td>
                 <td class="visits__table-num">
                   <span class="visits__badge">{{ row.count.toLocaleString() }}</span>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p v-else class="visits__empty">No referrer data yet.</p>
+          <p
+            v-else
+            class="visits__empty"
+          >
+            No referrer data yet.
+          </p>
         </div>
       </div>
     </template>

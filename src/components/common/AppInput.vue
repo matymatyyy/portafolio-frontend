@@ -13,7 +13,10 @@ defineEmits<{ 'update:modelValue': [value: string] }>()
 
 <template>
   <div class="field">
-    <label v-if="label" class="field__label">{{ label }}</label>
+    <label
+      v-if="label"
+      class="field__label"
+    >{{ label }}</label>
     <input
       :value="modelValue"
       :type="type ?? 'text'"
@@ -21,8 +24,11 @@ defineEmits<{ 'update:modelValue': [value: string] }>()
       :disabled="disabled"
       :class="['field__input', { 'field__input--error': error }]"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-    />
-    <span v-if="error" class="field__error">{{ error }}</span>
+    >
+    <span
+      v-if="error"
+      class="field__error"
+    >{{ error }}</span>
   </div>
 </template>
 

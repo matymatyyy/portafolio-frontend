@@ -5,7 +5,10 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
 </script>
 
 <template>
-  <section id="about" class="pf-section pf-about">
+  <section
+    id="about"
+    class="pf-section pf-about"
+  >
     <div class="pf-container pf-about__grid">
       <div class="pf-about__photo">
         <div class="pf-about__avatar-wrap">
@@ -16,12 +19,16 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
             loading="lazy"
             width="220"
             height="220"
-          />
+          >
         </div>
       </div>
       <div class="pf-about__body">
-        <p class="pf-section__label">About me</p>
-        <h2 class="pf-section__title">Turning ideas into<br />polished products</h2>
+        <p class="pf-section__label">
+          About me
+        </p>
+        <h2 class="pf-section__title">
+          Turning ideas into<br>polished products
+        </h2>
         <p class="pf-about__text">
           Full Stack Developer with a backend-oriented profile. Professional experience with
           PHP/Symfony, hexagonal architecture, testing and code quality (PHPUnit, PHPStan, ECS).
@@ -46,9 +53,25 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
             <span class="pf-stat__label">Degrees</span>
           </div>
         </div>
-        <a :href="cvUrl" target="_blank" rel="noopener noreferrer" class="pf-btn pf-btn--outline pf-about__cv">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/>
+        <a
+          :href="cvUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pf-btn pf-btn--outline pf-about__cv"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
           Download CV
         </a>

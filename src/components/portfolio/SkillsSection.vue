@@ -24,22 +24,100 @@ const skillCategories = [
 </script>
 
 <template>
-  <section id="skills" class="pf-section pf-skills">
+  <section
+    id="skills"
+    class="pf-section pf-skills"
+  >
     <div class="pf-container">
-      <p class="pf-section__label pf-section__label--center">What I work with</p>
-      <h2 class="pf-section__title pf-section__title--center">Skills &amp; Stack</h2>
+      <p class="pf-section__label pf-section__label--center">
+        What I work with
+      </p>
+      <h2 class="pf-section__title pf-section__title--center">
+        Skills &amp; Stack
+      </h2>
       <div class="pf-skills__grid">
-        <div v-for="cat in skillCategories" :key="cat.title" class="pf-skill-card">
+        <div
+          v-for="cat in skillCategories"
+          :key="cat.title"
+          class="pf-skill-card"
+        >
           <div class="pf-skill-card__header">
-            <span class="pf-skill-card__icon" :style="{ background: cat.color + '18', color: cat.color }">
+            <span
+              class="pf-skill-card__icon"
+              :style="{ background: cat.color + '18', color: cat.color }"
+            >
               <!-- Backend -->
-              <svg v-if="cat.title === 'Backend'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="6" cy="18" r="1" fill="currentColor" stroke="none"/></svg>
+              <svg
+                v-if="cat.title === 'Backend'"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ><rect
+                x="2"
+                y="2"
+                width="20"
+                height="8"
+                rx="2"
+              /><rect
+                x="2"
+                y="14"
+                width="20"
+                height="8"
+                rx="2"
+              /><circle
+                cx="6"
+                cy="6"
+                r="1"
+                fill="currentColor"
+                stroke="none"
+              /><circle
+                cx="6"
+                cy="18"
+                r="1"
+                fill="currentColor"
+                stroke="none"
+              /></svg>
               <!-- Frontend -->
-              <svg v-else-if="cat.title === 'Frontend'" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <svg
+                v-else-if="cat.title === 'Frontend'"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
               <!-- Architecture -->
-              <svg v-else-if="cat.title.includes('Architecture')" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              <svg
+                v-else-if="cat.title.includes('Architecture')"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></svg>
               <!-- DevOps -->
-              <svg v-else width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <svg
+                v-else
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></svg>
             </span>
             <span class="pf-skill-card__name">{{ cat.title }}</span>
           </div>

@@ -12,15 +12,30 @@ const form = ref({ username: '', password: '' })
     <div class="login-card">
       <div class="login-card__header">
         <span class="login-card__logo">maty.</span>
-        <h1 class="login-card__title">Admin Panel</h1>
-        <p class="login-card__sub">Sign in to manage your portfolio</p>
+        <h1 class="login-card__title">
+          Admin Panel
+        </h1>
+        <p class="login-card__sub">
+          Sign in to manage your portfolio
+        </p>
       </div>
 
-      <form class="login-form" @submit.prevent="login(form.username, form.password)">
-        <div v-if="error" class="login-alert">{{ error }}</div>
+      <form
+        class="login-form"
+        @submit.prevent="login(form.username, form.password)"
+      >
+        <div
+          v-if="error"
+          class="login-alert"
+        >
+          {{ error }}
+        </div>
 
         <div class="login-field">
-          <label class="login-field__label" for="email">Email</label>
+          <label
+            class="login-field__label"
+            for="email"
+          >Email</label>
           <input
             id="email"
             v-model="form.username"
@@ -29,11 +44,14 @@ const form = ref({ username: '', password: '' })
             placeholder="admin@example.com"
             required
             autocomplete="email"
-          />
+          >
         </div>
 
         <div class="login-field">
-          <label class="login-field__label" for="password">Password</label>
+          <label
+            class="login-field__label"
+            for="password"
+          >Password</label>
           <input
             id="password"
             v-model="form.password"
@@ -42,16 +60,28 @@ const form = ref({ username: '', password: '' })
             placeholder="••••••••"
             required
             autocomplete="current-password"
-          />
+          >
         </div>
 
-        <button class="login-btn" type="submit" :disabled="loading">
-          <span v-if="loading" class="login-btn__spinner" />
+        <button
+          class="login-btn"
+          type="submit"
+          :disabled="loading"
+        >
+          <span
+            v-if="loading"
+            class="login-btn__spinner"
+          />
           {{ loading ? 'Signing in…' : 'Sign in' }}
         </button>
       </form>
 
-      <RouterLink to="/" class="login-back">← Back to portfolio</RouterLink>
+      <RouterLink
+        to="/"
+        class="login-back"
+      >
+        ← Back to portfolio
+      </RouterLink>
     </div>
   </div>
 </template>

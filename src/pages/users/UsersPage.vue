@@ -28,8 +28,12 @@ function handleSearch(filters: Filters) {
   <div class="page">
     <header class="page__header">
       <div>
-        <h1 class="page__title">Users</h1>
-        <p class="page__sub">Manage admin accounts</p>
+        <h1 class="page__title">
+          Users
+        </h1>
+        <p class="page__sub">
+          Manage admin accounts
+        </p>
       </div>
       <RouterLink :to="{ name: 'user-create' }">
         <AppButton>+ New User</AppButton>
@@ -38,14 +42,26 @@ function handleSearch(filters: Filters) {
 
     <UserFilters @search="handleSearch" />
 
-    <div v-if="error" class="alert alert--error">{{ error }}</div>
+    <div
+      v-if="error"
+      class="alert alert--error"
+    >
+      {{ error }}
+    </div>
 
-    <div v-if="loading && users.length === 0" class="page__loading">
+    <div
+      v-if="loading && users.length === 0"
+      class="page__loading"
+    >
       <LoadingSpinner size="lg" />
     </div>
 
     <template v-else>
-      <UserTable :users="users" :loading="loading" @delete="handleDelete" />
+      <UserTable
+        :users="users"
+        :loading="loading"
+        @delete="handleDelete"
+      />
 
       <Pagination
         v-if="pagination.meta.value"

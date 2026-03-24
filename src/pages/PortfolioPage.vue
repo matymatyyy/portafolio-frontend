@@ -47,7 +47,10 @@ function onScroll() {
 
 <template>
   <div id="main-content">
-    <NavBar :active-section="activeSection" :scrolled="scrolled" />
+    <NavBar
+      :active-section="activeSection"
+      :scrolled="scrolled"
+    />
     <HeroSection />
     <AboutSection />
     <SkillsSection />

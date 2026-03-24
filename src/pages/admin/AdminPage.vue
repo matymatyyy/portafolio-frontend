@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { RouterView, RouterLink, useRoute } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
 
@@ -21,11 +21,20 @@ function isActive(match: string): boolean {
 </script>
 
 <template>
-  <div class="admin" :class="{ 'admin--collapsed': collapsed }">
+  <div
+    class="admin"
+    :class="{ 'admin--collapsed': collapsed }"
+  >
     <!-- Sidebar -->
-    <aside class="sidebar" :class="{ 'sidebar--collapsed': collapsed }">
+    <aside
+      class="sidebar"
+      :class="{ 'sidebar--collapsed': collapsed }"
+    >
       <div class="sidebar__top">
-        <RouterLink to="/" class="sidebar__logo">
+        <RouterLink
+          to="/"
+          class="sidebar__logo"
+        >
           <span v-if="!collapsed">maty.</span>
           <span v-else>m.</span>
         </RouterLink>
@@ -40,30 +49,117 @@ function isActive(match: string): boolean {
           >
             <span class="sidebar__icon">
               <!-- Projects -->
-              <svg v-if="item.match === 'project'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <svg
+                v-if="item.match === 'project'"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ><rect
+                x="2"
+                y="3"
+                width="20"
+                height="14"
+                rx="2"
+              /><path d="M8 21h8M12 17v4" /></svg>
               <!-- Users -->
-              <svg v-else-if="item.match === 'user'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <svg
+                v-else-if="item.match === 'user'"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle
+                cx="9"
+                cy="7"
+                r="4"
+              /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>
               <!-- Visitors -->
-              <svg v-else-if="item.match === 'visit'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <svg
+                v-else-if="item.match === 'visit'"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>
               <!-- CV -->
-              <svg v-else-if="item.match === 'cv'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+              <svg
+                v-else-if="item.match === 'cv'"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" /><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" /></svg>
             </span>
-            <span v-if="!collapsed" class="sidebar__label">{{ item.label }}</span>
+            <span
+              v-if="!collapsed"
+              class="sidebar__label"
+            >{{ item.label }}</span>
           </RouterLink>
         </nav>
       </div>
       <div class="sidebar__bottom">
-        <button class="sidebar__toggle" @click="collapsed = !collapsed" :title="collapsed ? 'Expand sidebar' : 'Collapse sidebar'">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path v-if="!collapsed" d="M15 18l-6-6 6-6" />
-            <path v-else d="M9 18l6-6-6-6" />
+        <button
+          class="sidebar__toggle"
+          :title="collapsed ? 'Expand sidebar' : 'Collapse sidebar'"
+          @click="collapsed = !collapsed"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              v-if="!collapsed"
+              d="M15 18l-6-6 6-6"
+            />
+            <path
+              v-else
+              d="M9 18l6-6-6-6"
+            />
           </svg>
         </button>
-        <button class="sidebar__logout" @click="logout">
+        <button
+          class="sidebar__logout"
+          @click="logout"
+        >
           <span class="sidebar__icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" /></svg>
           </span>
-          <span v-if="!collapsed" class="sidebar__label">Logout</span>
+          <span
+            v-if="!collapsed"
+            class="sidebar__label"
+          >Logout</span>
         </button>
       </div>
     </aside>

@@ -70,20 +70,49 @@ async function submit() {
 <template>
   <div class="page">
     <div class="page__header">
-      <h1 class="page__title">{{ isEditing ? 'Edit User' : 'New User' }}</h1>
-      <p class="page__sub">{{ isEditing ? 'Update user details' : 'Create a new admin account' }}</p>
+      <h1 class="page__title">
+        {{ isEditing ? 'Edit User' : 'New User' }}
+      </h1>
+      <p class="page__sub">
+        {{ isEditing ? 'Update user details' : 'Create a new admin account' }}
+      </p>
     </div>
 
-    <div v-if="fetching" class="page__loading">
+    <div
+      v-if="fetching"
+      class="page__loading"
+    >
       <LoadingSpinner size="lg" />
     </div>
 
-    <div v-else class="form-card">
-      <form class="form" @submit.prevent="submit">
-        <div v-if="serverError" class="alert alert--error">{{ serverError }}</div>
+    <div
+      v-else
+      class="form-card"
+    >
+      <form
+        class="form"
+        @submit.prevent="submit"
+      >
+        <div
+          v-if="serverError"
+          class="alert alert--error"
+        >
+          {{ serverError }}
+        </div>
 
-        <AppInput v-model="form.name" label="Name" placeholder="John Doe" :error="errors.name" />
-        <AppInput v-model="form.email" label="Email" type="email" placeholder="john@example.com" :error="errors.email" />
+        <AppInput
+          v-model="form.name"
+          label="Name"
+          placeholder="John Doe"
+          :error="errors.name"
+        />
+        <AppInput
+          v-model="form.email"
+          label="Email"
+          type="email"
+          placeholder="john@example.com"
+          :error="errors.email"
+        />
         <AppInput
           v-model="form.password"
           label="Password"
@@ -93,10 +122,18 @@ async function submit() {
         />
 
         <div class="form__actions">
-          <AppButton type="submit" :loading="loading">
+          <AppButton
+            type="submit"
+            :loading="loading"
+          >
             {{ isEditing ? 'Save Changes' : 'Create User' }}
           </AppButton>
-          <AppButton variant="secondary" @click="$router.back()">Cancel</AppButton>
+          <AppButton
+            variant="secondary"
+            @click="$router.back()"
+          >
+            Cancel
+          </AppButton>
         </div>
       </form>
     </div>

@@ -22,20 +22,43 @@ const emit = defineEmits<{ delete: [id: string] }>()
       </thead>
       <tbody>
         <tr v-if="loading">
-          <td colspan="4" class="table__empty">Loading…</td>
+          <td
+            colspan="4"
+            class="table__empty"
+          >
+            Loading…
+          </td>
         </tr>
         <tr v-else-if="users.length === 0">
-          <td colspan="4" class="table__empty">No users found.</td>
+          <td
+            colspan="4"
+            class="table__empty"
+          >
+            No users found.
+          </td>
         </tr>
-        <tr v-for="user in users" :key="user.id">
+        <tr
+          v-for="user in users"
+          :key="user.id"
+        >
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ formatDate(user.created_at) }}</td>
           <td class="table__actions">
             <RouterLink :to="{ name: 'user-edit', params: { id: user.id } }">
-              <AppButton variant="secondary" size="sm">Edit</AppButton>
+              <AppButton
+                variant="secondary"
+                size="sm"
+              >
+                Edit
+              </AppButton>
             </RouterLink>
-            <AppButton variant="danger" @click="emit('delete', user.id)">Delete</AppButton>
+            <AppButton
+              variant="danger"
+              @click="emit('delete', user.id)"
+            >
+              Delete
+            </AppButton>
           </td>
         </tr>
       </tbody>

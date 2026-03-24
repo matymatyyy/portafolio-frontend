@@ -40,8 +40,12 @@ function clearSearch() {
   <div class="page">
     <header class="page__header">
       <div>
-        <h1 class="page__title">Projects</h1>
-        <p class="page__sub">Manage your portfolio projects</p>
+        <h1 class="page__title">
+          Projects
+        </h1>
+        <p class="page__sub">
+          Manage your portfolio projects
+        </p>
       </div>
       <RouterLink :to="{ name: 'admin-project-create' }">
         <AppButton>+ New Project</AppButton>
@@ -50,19 +54,52 @@ function clearSearch() {
 
     <!-- Filters -->
     <div class="filters">
-      <input v-model="searchTitle" class="filters__input" placeholder="Search by title…" @keyup.enter="handleSearch" />
-      <select v-model="searchStatus" class="filters__select" @change="handleSearch">
-        <option value="">All statuses</option>
-        <option value="active">Active</option>
-        <option value="archived">Archived</option>
+      <input
+        v-model="searchTitle"
+        class="filters__input"
+        placeholder="Search by title…"
+        @keyup.enter="handleSearch"
+      >
+      <select
+        v-model="searchStatus"
+        class="filters__select"
+        @change="handleSearch"
+      >
+        <option value="">
+          All statuses
+        </option>
+        <option value="active">
+          Active
+        </option>
+        <option value="archived">
+          Archived
+        </option>
       </select>
-      <AppButton variant="secondary" @click="handleSearch">Search</AppButton>
-      <AppButton variant="secondary" @click="clearSearch">Clear</AppButton>
+      <AppButton
+        variant="secondary"
+        @click="handleSearch"
+      >
+        Search
+      </AppButton>
+      <AppButton
+        variant="secondary"
+        @click="clearSearch"
+      >
+        Clear
+      </AppButton>
     </div>
 
-    <div v-if="error" class="alert alert--error">{{ error }}</div>
+    <div
+      v-if="error"
+      class="alert alert--error"
+    >
+      {{ error }}
+    </div>
 
-    <div v-if="loading && projects.length === 0" class="page__loading">
+    <div
+      v-if="loading && projects.length === 0"
+      class="page__loading"
+    >
       <LoadingSpinner size="lg" />
     </div>
 
@@ -81,31 +118,67 @@ function clearSearch() {
           </thead>
           <tbody>
             <tr v-if="loading">
-              <td colspan="6" class="table__empty">Loading…</td>
+              <td
+                colspan="6"
+                class="table__empty"
+              >
+                Loading…
+              </td>
             </tr>
             <tr v-else-if="projects.length === 0">
-              <td colspan="6" class="table__empty">No projects found.</td>
+              <td
+                colspan="6"
+                class="table__empty"
+              >
+                No projects found.
+              </td>
             </tr>
-            <tr v-for="project in projects" :key="project.id">
-              <td class="table__title">{{ project.title }}</td>
-              <td class="table__muted">{{ project.slug }}</td>
+            <tr
+              v-for="project in projects"
+              :key="project.id"
+            >
+              <td class="table__title">
+                {{ project.title }}
+              </td>
+              <td class="table__muted">
+                {{ project.slug }}
+              </td>
               <td>
                 <div class="tags">
-                  <span v-for="tech in project.technologies.slice(0, 3)" :key="tech" class="tag">{{ tech }}</span>
-                  <span v-if="project.technologies.length > 3" class="tag tag--more">+{{ project.technologies.length - 3 }}</span>
+                  <span
+                    v-for="tech in project.technologies.slice(0, 3)"
+                    :key="tech"
+                    class="tag"
+                  >{{ tech }}</span>
+                  <span
+                    v-if="project.technologies.length > 3"
+                    class="tag tag--more"
+                  >+{{ project.technologies.length - 3 }}</span>
                 </div>
               </td>
               <td>
-                <span class="badge" :class="project.status === 'active' ? 'badge--active' : 'badge--archived'">
+                <span
+                  class="badge"
+                  :class="project.status === 'active' ? 'badge--active' : 'badge--archived'"
+                >
                   {{ project.status }}
                 </span>
               </td>
-              <td class="table__muted">{{ formatDate(project.created_at) }}</td>
+              <td class="table__muted">
+                {{ formatDate(project.created_at) }}
+              </td>
               <td class="table__actions">
                 <RouterLink :to="{ name: 'admin-project-edit', params: { id: project.id } }">
-                  <AppButton variant="secondary">Edit</AppButton>
+                  <AppButton variant="secondary">
+                    Edit
+                  </AppButton>
                 </RouterLink>
-                <AppButton variant="danger" @click="handleDelete(project.id)">Delete</AppButton>
+                <AppButton
+                  variant="danger"
+                  @click="handleDelete(project.id)"
+                >
+                  Delete
+                </AppButton>
               </td>
             </tr>
           </tbody>

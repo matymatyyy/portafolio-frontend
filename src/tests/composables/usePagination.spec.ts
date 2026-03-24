@@ -9,7 +9,7 @@ describe('usePagination', () => {
   })
 
   it('navigates forward and backward', () => {
-    const { page, meta, setMeta, next, prev } = usePagination()
+    const { page, setMeta, next, prev } = usePagination()
     setMeta({ total: 30, page: 1, limit: 10, total_pages: 3 })
 
     next()

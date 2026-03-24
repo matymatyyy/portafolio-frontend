@@ -1,10 +1,5 @@
 import { post } from '@/utils/api'
 
-interface LoginPayload {
-  username: string
-  password: string
-}
-
 interface LoginResponse {
   token: string
 }
