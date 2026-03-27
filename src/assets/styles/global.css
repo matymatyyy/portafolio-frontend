@@ -9,6 +9,21 @@
   --border: #e5e7eb;
   --radius: 12px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --skeleton-base: #e5e7eb;
+  --skeleton-shine: #f3f4f6;
+}
+
+/* ─── Dark Mode ─── */
+[data-theme='dark'] {
+  --bg: #0f0f11;
+  --bg-alt: #18181b;
+  --fg: #e5e5e5;
+  --fg-muted: #9ca3af;
+  --accent: #8b5cf6;
+  --accent-light: #2d1b69;
+  --border: #27272a;
+  --skeleton-base: #27272a;
+  --skeleton-shine: #3f3f46;
 }
 
 /* ─── Resets ─── */
@@ -22,6 +37,7 @@ body {
   color: var(--fg);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -61,6 +77,32 @@ h1, h2, h3, h4 { line-height: 1.25; }
 .fade-leave-to {
   opacity: 0;
 }
+
+/* ─── Scroll Reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal--fade-left {
+  transform: translateX(-32px);
+}
+.reveal--fade-right {
+  transform: translateX(32px);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Stagger children */
+.reveal-stagger .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger .reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger .reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal-stagger .reveal:nth-child(4) { transition-delay: 0.3s; }
+.reveal-stagger .reveal:nth-child(5) { transition-delay: 0.4s; }
+.reveal-stagger .reveal:nth-child(6) { transition-delay: 0.5s; }
 
 /* ─── Portfolio Shared Utilities ─── */
 .pf-container {

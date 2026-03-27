@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { contactService } from '@/services/contactService'
+import { useI18n } from '@/composables/useI18n'
+
+const { t } = useI18n()
 
 const form = reactive({
   name: '',
@@ -28,7 +31,7 @@ async function sendContact() {
     clearTimeout(successTimeout)
     successTimeout = setTimeout(() => { success.value = false }, 5000)
   } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Failed to send message.'
+    error.value = err instanceof Error ? err.message : t('contact.error')
   } finally {
     sending.value = false
   }
@@ -41,18 +44,18 @@ async function sendContact() {
     class="pf-section pf-contact"
   >
     <div class="pf-container pf-contact__inner">
-      <p class="pf-section__label pf-section__label--center">
-        Let's work together
+      <p class="pf-section__label pf-section__label--center reveal reveal--fade-up">
+        {{ t('contact.label') }}
       </p>
-      <h2 class="pf-section__title pf-section__title--center">
-        Get in Touch
+      <h2 class="pf-section__title pf-section__title--center reveal reveal--fade-up">
+        {{ t('contact.title') }}
       </h2>
-      <p class="pf-contact__sub">
-        Have a project in mind or just want to say hi? My inbox is always open.
+      <p class="pf-contact__sub reveal reveal--fade-up">
+        {{ t('contact.subtitle') }}
       </p>
       <a
         href="mailto:matydominguez554@gmail.com"
-        class="pf-contact__email"
+        class="pf-contact__email reveal reveal--fade-up"
       >
         <svg
           width="18"
@@ -82,7 +85,7 @@ async function sendContact() {
         class="pf-form__success"
         role="status"
       >
-        Message sent successfully!
+        {{ t('contact.success') }}
       </p>
       <p
         v-if="error"
@@ -93,7 +96,7 @@ async function sendContact() {
       </p>
 
       <form
-        class="pf-form"
+        class="pf-form reveal reveal--fade-up"
         @submit.prevent="sendContact"
       >
         <div class="pf-form__row">
@@ -101,13 +104,13 @@ async function sendContact() {
             <label
               class="pf-form__label"
               for="cf-name"
-            >Name</label>
+            >{{ t('contact.name') }}</label>
             <input
               id="cf-name"
               v-model="form.name"
               class="pf-form__input"
               type="text"
-              placeholder="Your name"
+              :placeholder="t('contact.namePlaceholder')"
               required
               minlength="2"
               maxlength="100"
@@ -117,13 +120,13 @@ async function sendContact() {
             <label
               class="pf-form__label"
               for="cf-email"
-            >Email</label>
+            >{{ t('contact.email') }}</label>
             <input
               id="cf-email"
               v-model="form.email"
               class="pf-form__input"
               type="email"
-              placeholder="your@email.com"
+              :placeholder="t('contact.emailPlaceholder')"
               required
             >
           </div>
@@ -132,13 +135,13 @@ async function sendContact() {
           <label
             class="pf-form__label"
             for="cf-subject"
-          >Subject</label>
+          >{{ t('contact.subject') }}</label>
           <input
             id="cf-subject"
             v-model="form.subject"
             class="pf-form__input"
             type="text"
-            placeholder="What's this about?"
+            :placeholder="t('contact.subjectPlaceholder')"
             required
             minlength="2"
             maxlength="200"
@@ -148,12 +151,12 @@ async function sendContact() {
           <label
             class="pf-form__label"
             for="cf-message"
-          >Message</label>
+          >{{ t('contact.message') }}</label>
           <textarea
             id="cf-message"
             v-model="form.message"
             class="pf-form__input pf-form__textarea"
-            placeholder="Tell me about your project..."
+            :placeholder="t('contact.messagePlaceholder')"
             rows="5"
             required
             minlength="10"
@@ -165,7 +168,7 @@ async function sendContact() {
           class="pf-btn pf-btn--full"
           :disabled="sending"
         >
-          {{ sending ? 'Sending...' : 'Send message' }}
+          {{ sending ? t('contact.sending') : t('contact.send') }}
         </button>
       </form>
     </div>
@@ -237,6 +240,15 @@ async function sendContact() {
   background: #fef2f2;
   border: 1px solid #fecaca;
   border-radius: 8px;
+}
+
+[data-theme='dark'] .pf-form__success {
+  background: #052e16;
+  border-color: #166534;
+}
+[data-theme='dark'] .pf-form__error {
+  background: #450a0a;
+  border-color: #991b1b;
 }
 
 @media (max-width: 768px) {

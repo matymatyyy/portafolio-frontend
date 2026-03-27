@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from '@/composables/useI18n'
+
+const { t } = useI18n()
+
 function scrollTo(id: string) {
   const el = document.getElementById(id)
   if (el) el.scrollIntoView({ behavior: 'smooth' })
@@ -13,29 +17,29 @@ function scrollTo(id: string) {
   >
     <div class="pf-hero__inner pf-container">
       <p class="pf-hero__eyebrow">
-        Hello, I'm
+        {{ t('hero.eyebrow') }}
       </p>
       <h1 class="pf-hero__name">
-        Matias Dominguez
+        {{ t('hero.name') }}
       </h1>
       <h2 class="pf-hero__title">
-        Full Stack Developer
+        {{ t('hero.title') }}
       </h2>
       <p class="pf-hero__sub">
-        Specialized in clean architecture and scalable backends with PHP/Symfony, paired with modern Vue.js interfaces. Focused on code quality, testing, and delivering products that last.
+        {{ t('hero.subtitle') }}
       </p>
       <div class="pf-hero__actions">
         <button
           class="pf-btn"
           @click="scrollTo('projects')"
         >
-          View my work
+          {{ t('hero.viewWork') }}
         </button>
         <button
           class="pf-btn pf-btn--outline"
           @click="scrollTo('contact')"
         >
-          Get in touch
+          {{ t('hero.getInTouch') }}
         </button>
       </div>
     </div>
@@ -55,8 +59,13 @@ function scrollTo(id: string) {
   align-items: center;
   justify-content: center;
   position: relative;
-  background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 60%);
+  background: linear-gradient(135deg, #f5f3ff 0%, var(--bg) 60%);
 }
+
+[data-theme='dark'] .pf-hero {
+  background: linear-gradient(135deg, #1a1025 0%, var(--bg) 60%);
+}
+
 .pf-hero__inner { text-align: center; }
 .pf-hero__eyebrow {
   font-size: 1rem;

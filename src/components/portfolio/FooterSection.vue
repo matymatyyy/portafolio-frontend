@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { useI18n } from '@/composables/useI18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -7,7 +10,7 @@ import { RouterLink } from 'vue-router'
     <div class="pf-container pf-footer__inner">
       <span class="pf-footer__brand">maty.</span>
       <p class="pf-footer__copy">
-        &copy; {{ new Date().getFullYear() }} &mdash; Built with Vue 3 + TypeScript
+        &copy; {{ new Date().getFullYear() }} &mdash; {{ t('footer.builtWith') }}
       </p>
       <div class="pf-footer__social">
         <a
@@ -67,7 +70,7 @@ import { RouterLink } from 'vue-router'
 
 <style scoped>
 .pf-footer {
-  background: var(--fg);
+  background: #111111;
   color: #fff;
   padding: 2rem 0;
 }

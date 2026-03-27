@@ -1,22 +1,26 @@
 <script setup lang="ts">
+import { useI18n } from '@/composables/useI18n'
+
+const { t } = useI18n()
+
 const skillCategories = [
   {
-    title: 'Backend',
+    key: 'backend',
     color: '#5b21b6',
     skills: ['PHP', 'Symfony', 'Python', 'REST APIs'],
   },
   {
-    title: 'Frontend',
+    key: 'frontend',
     color: '#0891b2',
     skills: ['Vue.js', 'TypeScript', 'HTML / CSS', 'Responsive Design'],
   },
   {
-    title: 'Architecture & Testing',
+    key: 'architecture',
     color: '#059669',
     skills: ['Hexagonal / DDD', 'PHPUnit', 'PHPStan', 'ECS'],
   },
   {
-    title: 'DevOps & Tools',
+    key: 'devops',
     color: '#d97706',
     skills: ['Git / GitHub', 'OpenShift', 'CI/CD', 'PostgreSQL', 'Redis'],
   },
@@ -29,17 +33,17 @@ const skillCategories = [
     class="pf-section pf-skills"
   >
     <div class="pf-container">
-      <p class="pf-section__label pf-section__label--center">
-        What I work with
+      <p class="pf-section__label pf-section__label--center reveal reveal--fade-up">
+        {{ t('skills.label') }}
       </p>
-      <h2 class="pf-section__title pf-section__title--center">
-        Skills &amp; Stack
+      <h2 class="pf-section__title pf-section__title--center reveal reveal--fade-up">
+        {{ t('skills.title') }}
       </h2>
-      <div class="pf-skills__grid">
+      <div class="pf-skills__grid reveal-stagger">
         <div
           v-for="cat in skillCategories"
-          :key="cat.title"
-          class="pf-skill-card"
+          :key="cat.key"
+          class="pf-skill-card reveal reveal--fade-up"
         >
           <div class="pf-skill-card__header">
             <span
@@ -48,7 +52,7 @@ const skillCategories = [
             >
               <!-- Backend -->
               <svg
-                v-if="cat.title === 'Backend'"
+                v-if="cat.key === 'backend'"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
@@ -84,7 +88,7 @@ const skillCategories = [
               /></svg>
               <!-- Frontend -->
               <svg
-                v-else-if="cat.title === 'Frontend'"
+                v-else-if="cat.key === 'frontend'"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
@@ -96,7 +100,7 @@ const skillCategories = [
               ><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
               <!-- Architecture -->
               <svg
-                v-else-if="cat.title.includes('Architecture')"
+                v-else-if="cat.key === 'architecture'"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
@@ -119,7 +123,7 @@ const skillCategories = [
                 stroke-linejoin="round"
               ><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></svg>
             </span>
-            <span class="pf-skill-card__name">{{ cat.title }}</span>
+            <span class="pf-skill-card__name">{{ t(`skills.${cat.key}`) }}</span>
           </div>
           <div class="pf-skill-card__tags">
             <span

@@ -1,18 +1,24 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { visitService } from '@/services/visitService'
+import { useScrollReveal } from '@/composables/useScrollReveal'
+import { useSeo } from '@/composables/useSeo'
 import NavBar from '@/components/portfolio/NavBar.vue'
 import HeroSection from '@/components/portfolio/HeroSection.vue'
 import AboutSection from '@/components/portfolio/AboutSection.vue'
 import SkillsSection from '@/components/portfolio/SkillsSection.vue'
+import ExperienceSection from '@/components/portfolio/ExperienceSection.vue'
 import ProjectsSection from '@/components/portfolio/ProjectsSection.vue'
 import ContactSection from '@/components/portfolio/ContactSection.vue'
 import FooterSection from '@/components/portfolio/FooterSection.vue'
 
+useScrollReveal()
+useSeo()
+
 const activeSection = ref('hero')
 const scrolled = ref(false)
 
-const sections = ['hero', 'about', 'skills', 'projects', 'contact']
+const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'contact']
 
 let observer: IntersectionObserver
 
@@ -54,6 +60,7 @@ function onScroll() {
     <HeroSection />
     <AboutSection />
     <SkillsSection />
+    <ExperienceSection />
     <ProjectsSection />
     <ContactSection />
     <FooterSection />

@@ -2,7 +2,11 @@
 import { ref, computed, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { projectService } from '@/services/projectService'
+import { useI18n } from '@/composables/useI18n'
+import SkeletonCard from '@/components/common/SkeletonCard.vue'
 import type { Project } from '@/types/project'
+
+const { t } = useI18n()
 
 const projects = ref<Project[]>([])
 const loading = ref(false)
@@ -64,28 +68,32 @@ onMounted(async () => {
     class="pf-section pf-projects"
   >
     <div class="pf-container">
-      <p class="pf-section__label pf-section__label--center">
-        What I've built
+      <p class="pf-section__label pf-section__label--center reveal reveal--fade-up">
+        {{ t('projects.label') }}
       </p>
-      <h2 class="pf-section__title pf-section__title--center">
-        Selected Projects
+      <h2 class="pf-section__title pf-section__title--center reveal reveal--fade-up">
+        {{ t('projects.title') }}
       </h2>
 
+      <!-- Skeleton loading -->
       <div
         v-if="loading"
-        class="pf-projects__loading"
+        class="pf-projects__grid"
       >
-        <span class="pf-projects__spinner" />
+        <SkeletonCard
+          v-for="n in 6"
+          :key="n"
+        />
       </div>
 
       <div
         v-else
-        class="pf-projects__grid"
+        class="pf-projects__grid reveal-stagger"
       >
         <article
           v-for="project in visibleProjects"
           :key="project.id"
-          class="pf-project-card"
+          class="pf-project-card reveal reveal--fade-up"
         >
           <div
             class="pf-project-card__thumb"
@@ -112,9 +120,9 @@ onMounted(async () => {
           <RouterLink
             :to="{ name: 'project-detail', params: { id: project.id } }"
             class="pf-project-card__link"
-            :aria-label="`View details for ${project.title}`"
+            :aria-label="`${t('projects.viewDetails')} — ${project.title}`"
           >
-            View details
+            {{ t('projects.viewDetails') }}
             <svg
               width="20"
               height="20"
@@ -141,7 +149,7 @@ onMounted(async () => {
           class="pf-btn pf-btn--outline"
           @click="showMore"
         >
-          Show more projects
+          {{ t('projects.showMore') }}
         </button>
       </div>
     </div>
@@ -150,21 +158,6 @@ onMounted(async () => {
 
 <style scoped>
 .pf-projects { background: var(--bg-alt); }
-.pf-projects__loading {
-  display: flex;
-  justify-content: center;
-  padding: 4rem 0;
-}
-.pf-projects__spinner {
-  display: block;
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--accent-light);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
 .pf-projects__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

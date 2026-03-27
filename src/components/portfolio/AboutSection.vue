@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import avatarImg from '@/assets/avatar.png'
+import { useI18n } from '@/composables/useI18n'
 
+const { t } = useI18n()
 const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
 </script>
 
@@ -10,7 +12,7 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
     class="pf-section pf-about"
   >
     <div class="pf-container pf-about__grid">
-      <div class="pf-about__photo">
+      <div class="pf-about__photo reveal reveal--fade-right">
         <div class="pf-about__avatar-wrap">
           <img
             :src="avatarImg"
@@ -23,41 +25,37 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
         </div>
       </div>
       <div class="pf-about__body">
-        <p class="pf-section__label">
-          About me
+        <p class="pf-section__label reveal reveal--fade-up">
+          {{ t('about.label') }}
         </p>
-        <h2 class="pf-section__title">
-          Turning ideas into<br>polished products
+        <h2 class="pf-section__title reveal reveal--fade-up">
+          {{ t('about.title').split('\n')[0] }}<br>{{ t('about.title').split('\n')[1] }}
         </h2>
-        <p class="pf-about__text">
-          Full Stack Developer with a backend-oriented profile. Professional experience with
-          PHP/Symfony, hexagonal architecture, testing and code quality (PHPUnit, PHPStan, ECS).
-          Educated in Systems Analysis and Programming.
+        <p class="pf-about__text reveal reveal--fade-up">
+          {{ t('about.text1') }}
         </p>
-        <p class="pf-about__text">
-          Currently working as a Full Stack Developer at VarCreative, building backend services
-          with Symfony, integrating reactive interfaces with Vue.js, and deploying on OpenShift
-          environments. Committed to best practices and continuous learning.
+        <p class="pf-about__text reveal reveal--fade-up">
+          {{ t('about.text2') }}
         </p>
-        <div class="pf-about__stats">
+        <div class="pf-about__stats reveal reveal--fade-up">
           <div class="pf-stat">
             <span class="pf-stat__value">9+</span>
-            <span class="pf-stat__label">Technologies</span>
+            <span class="pf-stat__label">{{ t('about.statTech') }}</span>
           </div>
           <div class="pf-stat">
             <span class="pf-stat__value">10+</span>
-            <span class="pf-stat__label">Projects</span>
+            <span class="pf-stat__label">{{ t('about.statProjects') }}</span>
           </div>
           <div class="pf-stat">
             <span class="pf-stat__value">2</span>
-            <span class="pf-stat__label">Degrees</span>
+            <span class="pf-stat__label">{{ t('about.statDegrees') }}</span>
           </div>
         </div>
         <a
           :href="cvUrl"
           target="_blank"
           rel="noopener noreferrer"
-          class="pf-btn pf-btn--outline pf-about__cv"
+          class="pf-btn pf-btn--outline pf-about__cv reveal reveal--fade-up"
         >
           <svg
             width="18"
@@ -73,7 +71,7 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
               stroke-linejoin="round"
             />
           </svg>
-          Download CV
+          {{ t('about.downloadCv') }}
         </a>
       </div>
     </div>
