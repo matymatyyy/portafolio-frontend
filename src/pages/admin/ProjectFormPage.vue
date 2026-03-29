@@ -180,7 +180,7 @@ async function submit() {
 
         <!-- Image upload -->
         <div class="field">
-          <label class="field__label">Project Image (optional)</label>
+          <label class="field__label" for="pf-image">Project Image (optional)</label>
 
           <!-- Preview -->
           <div v-if="form.imageUrl" class="img-preview">
@@ -229,6 +229,7 @@ async function submit() {
           </div>
 
           <input
+            id="pf-image"
             ref="fileInput"
             type="file"
             accept="image/jpeg,image/png,image/webp,image/gif"

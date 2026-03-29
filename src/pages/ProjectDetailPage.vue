@@ -13,6 +13,7 @@ const loading = ref(true)
 const error = ref<string | null>(null)
 
 onMounted(async () => {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   visitService.register(route.path).catch(() => {})
   try {
     project.value = await projectService.get(route.params.id as string)
@@ -33,7 +34,7 @@ function goBack() {
     <!-- ── NAV ── -->
     <header class="pd-nav">
       <div class="pd-container pd-nav__inner">
-        <button class="pd-nav__back" @click="goBack" aria-label="Back to home">
+        <button class="pd-nav__back" aria-label="Back to home" @click="goBack">
           <svg
             width="20"
             height="20"

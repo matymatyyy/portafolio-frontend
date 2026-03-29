@@ -23,6 +23,7 @@ const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'
 let observer: IntersectionObserver
 
 onMounted(() => {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   visitService.register('/').catch(() => {})
 
   observer = new IntersectionObserver(
