@@ -22,17 +22,9 @@ function scrollTo(id: string) {
 </script>
 
 <template>
-  <header
-    class="pf-nav"
-    :class="{ 'pf-nav--scrolled': scrolled }"
-  >
+  <header class="pf-nav" :class="{ 'pf-nav--scrolled': scrolled }">
     <div class="pf-nav__inner">
-      <button
-        class="pf-nav__logo"
-        @click="scrollTo('hero')"
-      >
-        maty.
-      </button>
+      <button class="pf-nav__logo" @click="scrollTo('hero')">maty.</button>
 
       <nav
         id="main-nav"
@@ -67,11 +59,12 @@ function scrollTo(id: string) {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-            ><circle
-              cx="12"
-              cy="12"
-              r="5"
-            /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></svg>
+            >
+              <circle cx="12" cy="12" r="5" />
+              <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+              />
+            </svg>
             <!-- Moon -->
             <svg
               v-else
@@ -83,7 +76,9 @@ function scrollTo(id: string) {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-            ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
           </button>
 
           <button
@@ -94,10 +89,7 @@ function scrollTo(id: string) {
             {{ locale.toUpperCase() }}
           </button>
 
-          <button
-            class="pf-btn pf-btn--sm"
-            @click="scrollTo('contact')"
-          >
+          <button class="pf-btn pf-btn--sm" @click="scrollTo('contact')">
             {{ t('nav.hireMe') }}
           </button>
         </div>
@@ -120,9 +112,13 @@ function scrollTo(id: string) {
 <style scoped>
 .pf-nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  transition: background var(--transition), box-shadow var(--transition);
+  transition:
+    background var(--transition),
+    box-shadow var(--transition);
 }
 .pf-nav--scrolled {
   background: rgba(255, 255, 255, 0.9);
@@ -160,10 +156,18 @@ function scrollTo(id: string) {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--fg-muted);
-  transition: color var(--transition), background var(--transition);
+  transition:
+    color var(--transition),
+    background var(--transition);
 }
-.pf-nav__link:hover { color: var(--fg); background: var(--bg-alt); }
-.pf-nav__link--active { color: var(--accent); background: var(--accent-light); }
+.pf-nav__link:hover {
+  color: var(--fg);
+  background: var(--bg-alt);
+}
+.pf-nav__link--active {
+  color: var(--accent);
+  background: var(--accent-light);
+}
 
 .pf-nav__controls {
   display: flex;
@@ -180,7 +184,9 @@ function scrollTo(id: string) {
   height: 36px;
   border-radius: 8px;
   color: var(--fg-muted);
-  transition: color var(--transition), background var(--transition);
+  transition:
+    color var(--transition),
+    background var(--transition);
 }
 .pf-nav__icon-btn:hover {
   color: var(--accent);
@@ -193,34 +199,52 @@ function scrollTo(id: string) {
   letter-spacing: 0.05em;
 }
 
-.pf-nav__burger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+.pf-nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
 .pf-nav__burger span {
   display: block;
-  width: 22px; height: 2px;
+  width: 22px;
+  height: 2px;
   background: var(--fg);
   border-radius: 2px;
-  transition: transform var(--transition), opacity var(--transition);
+  transition:
+    transform var(--transition),
+    opacity var(--transition);
 }
-.pf-nav__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.pf-nav__burger.open span:nth-child(2) { opacity: 0; }
-.pf-nav__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.pf-nav__burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.pf-nav__burger.open span:nth-child(2) {
+  opacity: 0;
+}
+.pf-nav__burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
 @media (max-width: 768px) {
   .pf-nav__links {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 64px; left: 0; right: 0;
+    top: 64px;
+    left: 0;
+    right: 0;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(16px);
     padding: 0.75rem 1rem 1rem;
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     gap: 0.25rem;
     transform: translateY(-110%);
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+    transition:
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.25s ease;
   }
 
   [data-theme='dark'] .pf-nav__links {
@@ -246,7 +270,9 @@ function scrollTo(id: string) {
     justify-content: center;
     gap: 0.5rem;
   }
-  .pf-nav__burger { display: flex; }
+  .pf-nav__burger {
+    display: flex;
+  }
   .pf-nav__controls .pf-btn--sm {
     flex: 1;
     justify-content: center;

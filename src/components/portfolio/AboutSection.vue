@@ -7,10 +7,7 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
 </script>
 
 <template>
-  <section
-    id="about"
-    class="pf-section pf-about"
-  >
+  <section id="about" class="pf-section pf-about">
     <div class="pf-container pf-about__grid">
       <div class="pf-about__photo reveal reveal--fade-right">
         <div class="pf-about__avatar-wrap">
@@ -21,7 +18,7 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
             loading="lazy"
             width="220"
             height="220"
-          >
+          />
         </div>
       </div>
       <div class="pf-about__body">
@@ -29,7 +26,7 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
           {{ t('about.label') }}
         </p>
         <h2 class="pf-section__title reveal reveal--fade-up">
-          {{ t('about.title').split('\n')[0] }}<br>{{ t('about.title').split('\n')[1] }}
+          {{ t('about.title').split('\n')[0] }}<br />{{ t('about.title').split('\n')[1] }}
         </h2>
         <p class="pf-about__text reveal reveal--fade-up">
           {{ t('about.text1') }}
@@ -79,14 +76,19 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
 </template>
 
 <style scoped>
-.pf-about { background: var(--bg-alt); }
+.pf-about {
+  background: var(--bg-alt);
+}
 .pf-about__grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 4rem;
   align-items: center;
 }
-.pf-about__photo { display: flex; justify-content: center; }
+.pf-about__photo {
+  display: flex;
+  justify-content: center;
+}
 .pf-about__avatar-wrap {
   position: relative;
   width: 220px;
@@ -102,8 +104,15 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
   animation: avatarPulse 3s ease-in-out infinite;
 }
 @keyframes avatarPulse {
-  0%, 100% { opacity: 0.15; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(1.03); }
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.03);
+  }
 }
 .pf-about__avatar {
   width: 100%;
@@ -119,28 +128,74 @@ const cvUrl = `${import.meta.env.VITE_API_URL}/api/cv`
   margin: 0 0 1rem;
   font-size: 1rem;
 }
-.pf-about__stats { display: flex; gap: 2rem; margin-top: 1.75rem; }
-.pf-stat { display: flex; flex-direction: column; gap: 0.125rem; }
-.pf-stat__value { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; }
-.pf-stat__label { font-size: 0.8125rem; color: var(--fg-muted); font-weight: 500; }
-.pf-about__cv { margin-top: 1.75rem; text-decoration: none; }
+.pf-about__stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.75rem;
+}
+.pf-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.pf-stat__value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.pf-stat__label {
+  font-size: 0.8125rem;
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+.pf-about__cv {
+  margin-top: 1.75rem;
+  text-decoration: none;
+}
 
 @media (max-width: 1024px) {
-  .pf-about__grid { grid-template-columns: 1fr 2.5fr; gap: 2.5rem; }
+  .pf-about__grid {
+    grid-template-columns: 1fr 2.5fr;
+    gap: 2.5rem;
+  }
 }
 @media (max-width: 768px) {
-  .pf-about__grid { grid-template-columns: 1fr; gap: 2rem; }
-  .pf-about__photo { order: -1; }
-  .pf-about__avatar-wrap { width: 160px; height: 160px; }
-  .pf-about__body { text-align: center; }
-  .pf-about__stats { justify-content: center; }
-  .pf-about__cv { justify-content: center; }
-  .pf-about__text { font-size: 0.9375rem; }
+  .pf-about__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .pf-about__photo {
+    order: -1;
+  }
+  .pf-about__avatar-wrap {
+    width: 160px;
+    height: 160px;
+  }
+  .pf-about__body {
+    text-align: center;
+  }
+  .pf-about__stats {
+    justify-content: center;
+  }
+  .pf-about__cv {
+    justify-content: center;
+  }
+  .pf-about__text {
+    font-size: 0.9375rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .pf-about__avatar-wrap { width: 130px; height: 130px; }
-  .pf-about__stats { gap: 1.5rem; }
-  .pf-stat__value { font-size: 1.625rem; }
+  .pf-about__avatar-wrap {
+    width: 130px;
+    height: 130px;
+  }
+  .pf-about__stats {
+    gap: 1.5rem;
+  }
+  .pf-stat__value {
+    font-size: 1.625rem;
+  }
 }
 </style>

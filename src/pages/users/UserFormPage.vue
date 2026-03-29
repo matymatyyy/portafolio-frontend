@@ -35,11 +35,11 @@ onMounted(async () => {
 function validate(): boolean {
   errors.value = {}
   if (!form.value.name || form.value.name.length < 2)
-    errors.value.name = 'Name must be at least 2 characters.'
+    {errors.value.name = 'Name must be at least 2 characters.'}
   if (!form.value.email || !/\S+@\S+\.\S+/.test(form.value.email))
-    errors.value.email = 'Enter a valid email.'
+    {errors.value.email = 'Enter a valid email.'}
   if (!isEditing.value && (!form.value.password || form.value.password.length < 8))
-    errors.value.password = 'Password must be at least 8 characters.'
+    {errors.value.password = 'Password must be at least 8 characters.'}
   return Object.keys(errors.value).length === 0
 }
 
@@ -78,34 +78,17 @@ async function submit() {
       </p>
     </div>
 
-    <div
-      v-if="fetching"
-      class="page__loading"
-    >
+    <div v-if="fetching" class="page__loading">
       <LoadingSpinner size="lg" />
     </div>
 
-    <div
-      v-else
-      class="form-card"
-    >
-      <form
-        class="form"
-        @submit.prevent="submit"
-      >
-        <div
-          v-if="serverError"
-          class="alert alert--error"
-        >
+    <div v-else class="form-card">
+      <form class="form" @submit.prevent="submit">
+        <div v-if="serverError" class="alert alert--error">
           {{ serverError }}
         </div>
 
-        <AppInput
-          v-model="form.name"
-          label="Name"
-          placeholder="John Doe"
-          :error="errors.name"
-        />
+        <AppInput v-model="form.name" label="Name" placeholder="John Doe" :error="errors.name" />
         <AppInput
           v-model="form.email"
           label="Email"
@@ -122,18 +105,10 @@ async function submit() {
         />
 
         <div class="form__actions">
-          <AppButton
-            type="submit"
-            :loading="loading"
-          >
+          <AppButton type="submit" :loading="loading">
             {{ isEditing ? 'Save Changes' : 'Create User' }}
           </AppButton>
-          <AppButton
-            variant="secondary"
-            @click="$router.back()"
-          >
-            Cancel
-          </AppButton>
+          <AppButton variant="secondary" @click="$router.back()"> Cancel </AppButton>
         </div>
       </form>
     </div>
@@ -141,8 +116,12 @@ async function submit() {
 </template>
 
 <style scoped>
-.page { max-width: 520px; }
-.page__header { margin-bottom: 1.75rem; }
+.page {
+  max-width: 520px;
+}
+.page__header {
+  margin-bottom: 1.75rem;
+}
 .page__title {
   font-size: 1.5rem;
   font-weight: 800;
@@ -155,17 +134,37 @@ async function submit() {
   color: #6b7280;
   margin: 0;
 }
-.page__loading { display: flex; justify-content: center; padding: 3rem 0; }
+.page__loading {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
 
 .form-card {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
-.form { display: flex; flex-direction: column; gap: 1.25rem; }
-.form__actions { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
-.alert { padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.875rem; }
-.alert--error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.form__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+.alert--error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
 </style>

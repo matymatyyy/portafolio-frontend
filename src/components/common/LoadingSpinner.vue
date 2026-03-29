@@ -3,11 +3,7 @@ defineProps<{ size?: 'sm' | 'md' | 'lg' }>()
 </script>
 
 <template>
-  <div
-    :class="['spinner', `spinner--${size ?? 'md'}`]"
-    role="status"
-    aria-label="Loading"
-  />
+  <div :class="['spinner', `spinner--${size ?? 'md'}`]" role="status" aria-label="Loading" />
 </template>
 
 <style scoped>
@@ -18,9 +14,22 @@ defineProps<{ size?: 'sm' | 'md' | 'lg' }>()
   border-top-color: #5b21b6;
   animation: spin 0.7s linear infinite;
 }
-.spinner--sm { width: 1rem; height: 1rem; }
-.spinner--md { width: 2rem; height: 2rem; }
-.spinner--lg { width: 3rem; height: 3rem; }
+.spinner--sm {
+  width: 1rem;
+  height: 1rem;
+}
+.spinner--md {
+  width: 2rem;
+  height: 2rem;
+}
+.spinner--lg {
+  width: 3rem;
+  height: 3rem;
+}
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 </style>

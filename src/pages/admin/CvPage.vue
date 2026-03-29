@@ -18,9 +18,9 @@ onMounted(async () => {
 })
 
 function formatSize(bytes: number): string {
-  if (bytes < 1024) return bytes + ' B'
-  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'
-  return (bytes / (1024 * 1024)).toFixed(1) + ' MB'
+  if (bytes < 1024) return `${bytes  } B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)  } KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)  } MB`
 }
 
 function formatDate(dateStr: string): string {
@@ -76,34 +76,25 @@ async function handleFile(file: File) {
     if (fileInput.value) fileInput.value.value = ''
   }
 }
-
 </script>
 
 <template>
   <div class="cv">
     <div class="cv__header">
       <div>
-        <h1 class="cv__title">
-          Curriculum Vitae
-        </h1>
+        <h1 class="cv__title">Curriculum Vitae</h1>
         <p class="cv__sub">
           Upload or replace your CV. Visitors can download it from the portfolio.
         </p>
       </div>
     </div>
 
-    <div
-      v-if="loading"
-      class="cv__loading"
-    >
+    <div v-if="loading" class="cv__loading">
       <span class="cv__spinner" />
     </div>
     <div v-else>
       <!-- Current CV info -->
-      <div
-        v-if="currentCv"
-        class="cv__current"
-      >
+      <div v-if="currentCv" class="cv__current">
         <div class="cv__file-icon">
           <svg
             width="40"
@@ -136,11 +127,7 @@ async function handleFile(file: File) {
             </template>
           </p>
         </div>
-        <a
-          :href="cvService.downloadUrl()"
-          target="_blank"
-          class="cv__download-btn"
-        >
+        <a :href="cvService.downloadUrl()" target="_blank" class="cv__download-btn">
           <svg
             width="18"
             height="18"
@@ -160,20 +147,15 @@ async function handleFile(file: File) {
       </div>
 
       <!-- Messages -->
-      <div
-        v-if="error"
-        class="cv__msg cv__msg--error"
-      >
+      <div v-if="error" class="cv__msg cv__msg--error">
         {{ error }}
       </div>
-      <div
-        v-if="success"
-        class="cv__msg cv__msg--success"
-      >
+      <div v-if="success" class="cv__msg cv__msg--success">
         {{ success }}
       </div>
 
       <!-- Upload area -->
+      <!-- eslint-disable vuejs-accessibility/click-events-have-key-events, vuejs-accessibility/no-static-element-interactions -->
       <div
         class="cv__dropzone"
         :class="{ 'cv__dropzone--active': dragOver, 'cv__dropzone--uploading': uploading }"
@@ -182,24 +164,20 @@ async function handleFile(file: File) {
         @drop.prevent="onDrop"
         @click="triggerFileSelect"
       >
+        <!-- eslint-enable vuejs-accessibility/click-events-have-key-events, vuejs-accessibility/no-static-element-interactions -->
         <input
           ref="fileInput"
           type="file"
           accept=".pdf,.doc,.docx"
           class="cv__file-input"
+          aria-label="Upload CV file"
           @change="onFileSelected"
-        >
-        <div
-          v-if="uploading"
-          class="cv__uploading"
-        >
+        />
+        <div v-if="uploading" class="cv__uploading">
           <span class="cv__spinner" />
           <p>Uploading...</p>
         </div>
-        <div
-          v-else
-          class="cv__dropzone-content"
-        >
+        <div v-else class="cv__dropzone-content">
           <svg
             width="48"
             height="48"
@@ -217,9 +195,7 @@ async function handleFile(file: File) {
           <p class="cv__dropzone-text">
             <span class="cv__dropzone-link">Click to select</span> or drag and drop
           </p>
-          <p class="cv__dropzone-hint">
-            PDF, DOC, DOCX — max 10 MB
-          </p>
+          <p class="cv__dropzone-hint">PDF, DOC, DOCX — max 10 MB</p>
         </div>
       </div>
     </div>
@@ -227,7 +203,9 @@ async function handleFile(file: File) {
 </template>
 
 <style scoped>
-.cv { max-width: 700px; }
+.cv {
+  max-width: 700px;
+}
 
 .cv__loading {
   display: flex;
@@ -264,7 +242,11 @@ async function handleFile(file: File) {
   animation: spin 0.7s linear infinite;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* Current CV */
 .cv__current {
@@ -278,7 +260,9 @@ async function handleFile(file: File) {
   margin-bottom: 1.25rem;
 }
 
-.cv__file-info { flex: 1; }
+.cv__file-info {
+  flex: 1;
+}
 
 .cv__filename {
   font-size: 0.9375rem;
@@ -307,7 +291,9 @@ async function handleFile(file: File) {
   transition: opacity 0.15s;
 }
 
-.cv__download-btn:hover { opacity: 0.88; }
+.cv__download-btn:hover {
+  opacity: 0.88;
+}
 
 /* Messages */
 .cv__msg {
@@ -340,7 +326,9 @@ async function handleFile(file: File) {
   border-radius: 12px;
   background: #fafafa;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .cv__dropzone:hover {

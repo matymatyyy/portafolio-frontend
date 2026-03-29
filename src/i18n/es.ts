@@ -61,7 +61,8 @@ export default {
   contact: {
     label: 'Trabajemos juntos',
     title: 'Contacto',
-    subtitle: '¿Tenés un proyecto en mente o simplemente querés saludar? Mi bandeja de entrada siempre está abierta.',
+    subtitle:
+      '¿Tenés un proyecto en mente o simplemente querés saludar? Mi bandeja de entrada siempre está abierta.',
     name: 'Nombre',
     namePlaceholder: 'Tu nombre',
     email: 'Email',

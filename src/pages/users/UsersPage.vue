@@ -28,12 +28,8 @@ function handleSearch(filters: Filters) {
   <div class="page">
     <header class="page__header">
       <div>
-        <h1 class="page__title">
-          Users
-        </h1>
-        <p class="page__sub">
-          Manage admin accounts
-        </p>
+        <h1 class="page__title">Users</h1>
+        <p class="page__sub">Manage admin accounts</p>
       </div>
       <RouterLink :to="{ name: 'user-create' }">
         <AppButton>+ New User</AppButton>
@@ -42,26 +38,16 @@ function handleSearch(filters: Filters) {
 
     <UserFilters @search="handleSearch" />
 
-    <div
-      v-if="error"
-      class="alert alert--error"
-    >
+    <div v-if="error" class="alert alert--error">
       {{ error }}
     </div>
 
-    <div
-      v-if="loading && users.length === 0"
-      class="page__loading"
-    >
+    <div v-if="loading && users.length === 0" class="page__loading">
       <LoadingSpinner size="lg" />
     </div>
 
     <template v-else>
-      <UserTable
-        :users="users"
-        :loading="loading"
-        @delete="handleDelete"
-      />
+      <UserTable :users="users" :loading="loading" @delete="handleDelete" />
 
       <Pagination
         v-if="pagination.meta.value"
@@ -74,7 +60,9 @@ function handleSearch(filters: Filters) {
 </template>
 
 <style scoped>
-.page { max-width: 1000px; }
+.page {
+  max-width: 1000px;
+}
 .page__header {
   display: flex;
   justify-content: space-between;
@@ -93,7 +81,20 @@ function handleSearch(filters: Filters) {
   color: #6b7280;
   margin: 0;
 }
-.page__loading { display: flex; justify-content: center; padding: 3rem 0; }
-.alert { padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.875rem; }
-.alert--error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+.page__loading {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+.alert--error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
 </style>

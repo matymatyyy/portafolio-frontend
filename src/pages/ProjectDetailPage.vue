@@ -29,49 +29,39 @@ function goBack() {
 </script>
 
 <template>
-  <div
-    id="main-content"
-    class="pd-page"
-  >
+  <div id="main-content" class="pd-page">
     <!-- ── NAV ── -->
     <header class="pd-nav">
       <div class="pd-container pd-nav__inner">
-        <button
-          class="pd-nav__logo"
-          @click="router.push('/')"
-        >
-          maty.
+        <button class="pd-nav__back" @click="goBack" aria-label="Back to home">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </button>
+        <button class="pd-nav__logo" @click="router.push('/')">maty.</button>
       </div>
     </header>
 
     <!-- ── CONTENT ── -->
     <main class="pd-main pd-container">
-      <div
-        v-if="loading"
-        class="pd-loading"
-      >
+      <div v-if="loading" class="pd-loading">
         <span class="pd-spinner" />
       </div>
 
-      <div
-        v-else-if="error"
-        class="pd-error"
-      >
+      <div v-else-if="error" class="pd-error">
         <p>{{ error }}</p>
-        <button
-          class="pd-btn pd-btn--outline"
-          @click="goBack"
-        >
-          ← Back to portfolio
-        </button>
+        <button class="pd-btn pd-btn--outline" @click="goBack">← Back to portfolio</button>
       </div>
 
       <template v-else-if="project">
-        <button
-          class="pd-back"
-          @click="goBack"
-        >
+        <button class="pd-back" @click="goBack">
           <svg
             width="18"
             height="18"
@@ -80,11 +70,7 @@ function goBack() {
             stroke="currentColor"
             stroke-width="2"
           >
-            <path
-              d="M19 12H5M12 19l-7-7 7-7"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
+            <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           Back to projects
         </button>
@@ -92,18 +78,24 @@ function goBack() {
         <div class="pd-hero">
           <div
             class="pd-hero__thumb"
-            :style="project.image_url ? { backgroundImage: `url(${project.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined"
+            :style="
+              project.image_url
+                ? {
+                    backgroundImage: `url(${project.image_url})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }
+                : undefined
+            "
           />
         </div>
 
         <div class="pd-body">
           <div class="pd-body__main">
             <div class="pd-tags">
-              <span
-                v-for="tech in project.technologies"
-                :key="tech"
-                class="pd-tag"
-              >{{ tech }}</span>
+              <span v-for="tech in project.technologies" :key="tech" class="pd-tag">{{
+                tech
+              }}</span>
             </div>
             <h1 class="pd-title">
               {{ project.title }}
@@ -115,9 +107,7 @@ function goBack() {
 
           <aside class="pd-sidebar">
             <div class="pd-card">
-              <p class="pd-card__label">
-                Links
-              </p>
+              <p class="pd-card__label">Links</p>
               <a
                 v-if="project.project_url"
                 :href="project.project_url"
@@ -177,22 +167,14 @@ function goBack() {
                 </svg>
                 Source code
               </a>
-              <p
-                v-if="!project.project_url && !project.repo_url"
-                class="pd-card__empty"
-              >
+              <p v-if="!project.project_url && !project.repo_url" class="pd-card__empty">
                 No links available.
               </p>
             </div>
 
             <div class="pd-card">
-              <p class="pd-card__label">
-                Status
-              </p>
-              <span
-                class="pd-status"
-                :class="`pd-status--${project.status}`"
-              >
+              <p class="pd-card__label">Status</p>
+              <span class="pd-status" :class="`pd-status--${project.status}`">
                 {{ project.status === 'active' ? 'Active' : 'Archived' }}
               </span>
             </div>
@@ -221,6 +203,28 @@ function goBack() {
   color: var(--fg);
 }
 
+/* ─── Dark mode ─── */
+[data-theme='dark'] .pd-page {
+  --bg: #0f0f11;
+  --bg-alt: #18181b;
+  --fg: #e5e5e5;
+  --fg-muted: #9ca3af;
+  --accent: #8b5cf6;
+  --accent-light: #2d1b69;
+  --border: #27272a;
+}
+[data-theme='dark'] .pd-nav {
+  background: rgba(15, 15, 17, 0.9);
+}
+[data-theme='dark'] .pd-status--active {
+  background: #064e3b;
+  color: #6ee7b7;
+}
+[data-theme='dark'] .pd-status--archived {
+  background: #27272a;
+  color: #9ca3af;
+}
+
 /* Global resets are in global.css */
 
 /* ─── Container ─── */
@@ -244,6 +248,23 @@ function goBack() {
   height: 64px;
   display: flex;
   align-items: center;
+  gap: 0.75rem;
+}
+.pd-nav__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: var(--fg-muted);
+  transition:
+    color var(--transition),
+    background var(--transition);
+}
+.pd-nav__back:hover {
+  color: var(--accent);
+  background: var(--accent-light);
 }
 .pd-nav__logo {
   font-size: 1.25rem;
@@ -268,7 +289,9 @@ function goBack() {
   margin-bottom: 2rem;
   transition: color var(--transition);
 }
-.pd-back:hover { color: var(--accent); }
+.pd-back:hover {
+  color: var(--accent);
+}
 
 /* ─── Hero thumb ─── */
 .pd-hero__thumb {
@@ -288,7 +311,12 @@ function goBack() {
 }
 
 /* ─── Tags ─── */
-.pd-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-bottom: 1rem; }
+.pd-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+}
 .pd-tag {
   display: inline-block;
   padding: 0.2rem 0.6rem;
@@ -316,7 +344,11 @@ function goBack() {
 }
 
 /* ─── Sidebar cards ─── */
-.pd-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+.pd-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 .pd-card {
   background: var(--bg-alt);
   border: 1px solid var(--border);
@@ -331,7 +363,11 @@ function goBack() {
   color: var(--fg-muted);
   margin: 0 0 0.875rem;
 }
-.pd-card__empty { font-size: 0.875rem; color: var(--fg-muted); margin: 0; }
+.pd-card__empty {
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+  margin: 0;
+}
 
 /* ─── Link buttons ─── */
 .pd-link-btn {
@@ -348,14 +384,22 @@ function goBack() {
   margin-bottom: 0.625rem;
   transition: opacity var(--transition);
 }
-.pd-link-btn:last-child { margin-bottom: 0; }
-.pd-link-btn:hover { opacity: 0.85; }
+.pd-link-btn:last-child {
+  margin-bottom: 0;
+}
+.pd-link-btn:hover {
+  opacity: 0.85;
+}
 .pd-link-btn--secondary {
   background: transparent;
   color: var(--fg);
   border: 1.5px solid var(--border);
 }
-.pd-link-btn--secondary:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+.pd-link-btn--secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  opacity: 1;
+}
 
 /* ─── Status badge ─── */
 .pd-status {
@@ -365,8 +409,14 @@ function goBack() {
   font-size: 0.8125rem;
   font-weight: 600;
 }
-.pd-status--active { background: #d1fae5; color: #065f46; }
-.pd-status--archived { background: #f3f4f6; color: var(--fg-muted); }
+.pd-status--active {
+  background: #d1fae5;
+  color: #065f46;
+}
+.pd-status--archived {
+  background: #f3f4f6;
+  color: var(--fg-muted);
+}
 
 /* ─── Buttons ─── */
 .pd-btn {
@@ -386,7 +436,10 @@ function goBack() {
   color: var(--fg);
   border: 2px solid var(--border);
 }
-.pd-btn--outline:hover { border-color: var(--accent); color: var(--accent); }
+.pd-btn--outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
 
 /* ─── Loading / Error ─── */
 .pd-loading {
@@ -403,7 +456,11 @@ function goBack() {
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .pd-error {
   text-align: center;
   padding: 6rem 0;
@@ -416,18 +473,42 @@ function goBack() {
 
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
-  .pd-main { padding: 1.5rem 1.25rem 3rem; }
-  .pd-body { grid-template-columns: 1fr; gap: 2rem; }
-  .pd-hero__thumb { height: 200px; margin-bottom: 1.5rem; }
-  .pd-back { margin-bottom: 1.25rem; }
-  .pd-sidebar { order: -1; }
+  .pd-main {
+    padding: 1.5rem 1.25rem 3rem;
+  }
+  .pd-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .pd-hero__thumb {
+    height: 200px;
+    margin-bottom: 1.5rem;
+  }
+  .pd-back {
+    margin-bottom: 1.25rem;
+  }
+  .pd-sidebar {
+    order: -1;
+  }
 }
 
 @media (max-width: 480px) {
-  .pd-main { padding: 1.25rem 1rem 2.5rem; }
-  .pd-hero__thumb { height: 160px; border-radius: 10px; }
-  .pd-title { margin-bottom: 1rem; }
-  .pd-desc { font-size: 1rem; }
-  .pd-link-btn { padding: 0.75rem 1rem; font-size: 0.9375rem; }
+  .pd-main {
+    padding: 1.25rem 1rem 2.5rem;
+  }
+  .pd-hero__thumb {
+    height: 160px;
+    border-radius: 10px;
+  }
+  .pd-title {
+    margin-bottom: 1rem;
+  }
+  .pd-desc {
+    font-size: 1rem;
+  }
+  .pd-link-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+  }
 }
 </style>

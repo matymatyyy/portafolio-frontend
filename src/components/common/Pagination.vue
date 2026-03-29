@@ -12,7 +12,9 @@ const emit = defineEmits<{ change: [page: number] }>()
 <template>
   <div class="pagination">
     <span class="pagination__info">
-      {{ (currentPage - 1) * meta.limit + 1 }}–{{ Math.min(currentPage * meta.limit, meta.total) }}
+      {{ (currentPage - 1) * meta.limit + 1 }}–{{
+        Math.min(currentPage * meta.limit, meta.total)
+      }}
       of {{ meta.total }}
     </span>
     <div class="pagination__controls">
@@ -44,8 +46,14 @@ const emit = defineEmits<{ change: [page: number] }>()
   font-size: 0.875rem;
   color: #6b7280;
 }
-.pagination__info { font-size: 0.8125rem; }
-.pagination__controls { display: flex; align-items: center; gap: 0.5rem; }
+.pagination__info {
+  font-size: 0.8125rem;
+}
+.pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 .pagination__btn {
   padding: 0.4rem 0.875rem;
   border: 1.5px solid #e5e7eb;
@@ -56,10 +64,19 @@ const emit = defineEmits<{ change: [page: number] }>()
   font-weight: 600;
   font-family: inherit;
   color: #374151;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s;
 }
-.pagination__btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.pagination__btn:hover:not(:disabled) { border-color: #5b21b6; color: #5b21b6; }
+.pagination__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.pagination__btn:hover:not(:disabled) {
+  border-color: #5b21b6;
+  color: #5b21b6;
+}
 .pagination__pages {
   font-weight: 600;
   color: #5b21b6;

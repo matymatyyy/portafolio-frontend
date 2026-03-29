@@ -29,7 +29,9 @@ async function sendContact() {
     form.subject = ''
     form.message = ''
     clearTimeout(successTimeout)
-    successTimeout = setTimeout(() => { success.value = false }, 5000)
+    successTimeout = setTimeout(() => {
+      success.value = false
+    }, 5000)
   } catch (err) {
     error.value = err instanceof Error ? err.message : t('contact.error')
   } finally {
@@ -39,10 +41,7 @@ async function sendContact() {
 </script>
 
 <template>
-  <section
-    id="contact"
-    class="pf-section pf-contact"
-  >
+  <section id="contact" class="pf-section pf-contact">
     <div class="pf-container pf-contact__inner">
       <p class="pf-section__label pf-section__label--center reveal reveal--fade-up">
         {{ t('contact.label') }}
@@ -53,10 +52,7 @@ async function sendContact() {
       <p class="pf-contact__sub reveal reveal--fade-up">
         {{ t('contact.subtitle') }}
       </p>
-      <a
-        href="mailto:matydominguez554@gmail.com"
-        class="pf-contact__email reveal reveal--fade-up"
-      >
+      <a href="mailto:matydominguez554@gmail.com" class="pf-contact__email reveal reveal--fade-up">
         <svg
           width="18"
           height="18"
@@ -64,47 +60,36 @@ async function sendContact() {
           fill="none"
           stroke="currentColor"
           stroke-width="2"
-        ><rect
-          x="2"
-          y="4"
-          width="20"
-          height="16"
-          rx="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        /><path
-          d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        /></svg>
+        >
+          <rect
+            x="2"
+            y="4"
+            width="20"
+            height="16"
+            rx="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
         matydominguez554@gmail.com
       </a>
 
-      <p
-        v-if="success"
-        class="pf-form__success"
-        role="status"
-      >
+      <p v-if="success" class="pf-form__success" role="status">
         {{ t('contact.success') }}
       </p>
-      <p
-        v-if="error"
-        class="pf-form__error"
-        role="alert"
-      >
+      <p v-if="error" class="pf-form__error" role="alert">
         {{ error }}
       </p>
 
-      <form
-        class="pf-form reveal reveal--fade-up"
-        @submit.prevent="sendContact"
-      >
+      <form class="pf-form reveal reveal--fade-up" @submit.prevent="sendContact">
         <div class="pf-form__row">
           <div class="pf-form__field">
-            <label
-              class="pf-form__label"
-              for="cf-name"
-            >{{ t('contact.name') }}</label>
+            <label class="pf-form__label" for="cf-name">{{ t('contact.name') }}</label>
             <input
               id="cf-name"
               v-model="form.name"
@@ -114,13 +99,10 @@ async function sendContact() {
               required
               minlength="2"
               maxlength="100"
-            >
+            />
           </div>
           <div class="pf-form__field">
-            <label
-              class="pf-form__label"
-              for="cf-email"
-            >{{ t('contact.email') }}</label>
+            <label class="pf-form__label" for="cf-email">{{ t('contact.email') }}</label>
             <input
               id="cf-email"
               v-model="form.email"
@@ -128,14 +110,11 @@ async function sendContact() {
               type="email"
               :placeholder="t('contact.emailPlaceholder')"
               required
-            >
+            />
           </div>
         </div>
         <div class="pf-form__field">
-          <label
-            class="pf-form__label"
-            for="cf-subject"
-          >{{ t('contact.subject') }}</label>
+          <label class="pf-form__label" for="cf-subject">{{ t('contact.subject') }}</label>
           <input
             id="cf-subject"
             v-model="form.subject"
@@ -145,13 +124,10 @@ async function sendContact() {
             required
             minlength="2"
             maxlength="200"
-          >
+          />
         </div>
         <div class="pf-form__field">
-          <label
-            class="pf-form__label"
-            for="cf-message"
-          >{{ t('contact.message') }}</label>
+          <label class="pf-form__label" for="cf-message">{{ t('contact.message') }}</label>
           <textarea
             id="cf-message"
             v-model="form.message"
@@ -163,11 +139,7 @@ async function sendContact() {
             maxlength="5000"
           />
         </div>
-        <button
-          type="submit"
-          class="pf-btn pf-btn--full"
-          :disabled="sending"
-        >
+        <button type="submit" class="pf-btn pf-btn--full" :disabled="sending">
           {{ sending ? t('contact.sending') : t('contact.send') }}
         </button>
       </form>
@@ -176,8 +148,12 @@ async function sendContact() {
 </template>
 
 <style scoped>
-.pf-contact { background: var(--bg); }
-.pf-contact__inner { max-width: 640px; }
+.pf-contact {
+  background: var(--bg);
+}
+.pf-contact__inner {
+  max-width: 640px;
+}
 .pf-contact__sub {
   text-align: center;
   color: var(--fg-muted);
@@ -196,12 +172,30 @@ async function sendContact() {
   margin-bottom: 2rem;
   transition: opacity var(--transition);
 }
-.pf-contact__email:hover { opacity: 0.75; }
+.pf-contact__email:hover {
+  opacity: 0.75;
+}
 
-.pf-form { display: flex; flex-direction: column; gap: 1.25rem; }
-.pf-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-.pf-form__field { display: flex; flex-direction: column; gap: 0.375rem; }
-.pf-form__label { font-size: 0.875rem; font-weight: 600; color: var(--fg); }
+.pf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.pf-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.pf-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.pf-form__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--fg);
+}
 .pf-form__input {
   padding: 0.625rem 0.875rem;
   border: 1.5px solid var(--border);
@@ -210,7 +204,9 @@ async function sendContact() {
   font-size: 0.9375rem;
   color: var(--fg);
   background: var(--bg);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
   outline: none;
   resize: none;
 }
@@ -218,7 +214,9 @@ async function sendContact() {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-light);
 }
-.pf-form__textarea { resize: vertical; }
+.pf-form__textarea {
+  resize: vertical;
+}
 .pf-form__success {
   text-align: center;
   color: #16a34a;
@@ -252,9 +250,20 @@ async function sendContact() {
 }
 
 @media (max-width: 768px) {
-  .pf-form__row { grid-template-columns: 1fr; }
-  .pf-contact__sub { font-size: 0.9375rem; margin: -1rem 0 1rem; }
-  .pf-form__input { padding: 0.75rem 1rem; font-size: 1rem; }
-  .pf-contact__email { font-size: 0.875rem; word-break: break-all; }
+  .pf-form__row {
+    grid-template-columns: 1fr;
+  }
+  .pf-contact__sub {
+    font-size: 0.9375rem;
+    margin: -1rem 0 1rem;
+  }
+  .pf-form__input {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+  .pf-contact__email {
+    font-size: 0.875rem;
+    word-break: break-all;
+  }
 }
 </style>

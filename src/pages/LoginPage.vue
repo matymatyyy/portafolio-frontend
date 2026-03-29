@@ -12,30 +12,17 @@ const form = ref({ username: '', password: '' })
     <div class="login-card">
       <div class="login-card__header">
         <span class="login-card__logo">maty.</span>
-        <h1 class="login-card__title">
-          Admin Panel
-        </h1>
-        <p class="login-card__sub">
-          Sign in to manage your portfolio
-        </p>
+        <h1 class="login-card__title">Admin Panel</h1>
+        <p class="login-card__sub">Sign in to manage your portfolio</p>
       </div>
 
-      <form
-        class="login-form"
-        @submit.prevent="login(form.username, form.password)"
-      >
-        <div
-          v-if="error"
-          class="login-alert"
-        >
+      <form class="login-form" @submit.prevent="login(form.username, form.password)">
+        <div v-if="error" class="login-alert">
           {{ error }}
         </div>
 
         <div class="login-field">
-          <label
-            class="login-field__label"
-            for="email"
-          >Email</label>
+          <label class="login-field__label" for="email">Email</label>
           <input
             id="email"
             v-model="form.username"
@@ -44,14 +31,11 @@ const form = ref({ username: '', password: '' })
             placeholder="admin@example.com"
             required
             autocomplete="email"
-          >
+          />
         </div>
 
         <div class="login-field">
-          <label
-            class="login-field__label"
-            for="password"
-          >Password</label>
+          <label class="login-field__label" for="password">Password</label>
           <input
             id="password"
             v-model="form.password"
@@ -60,28 +44,16 @@ const form = ref({ username: '', password: '' })
             placeholder="••••••••"
             required
             autocomplete="current-password"
-          >
+          />
         </div>
 
-        <button
-          class="login-btn"
-          type="submit"
-          :disabled="loading"
-        >
-          <span
-            v-if="loading"
-            class="login-btn__spinner"
-          />
+        <button class="login-btn" type="submit" :disabled="loading">
+          <span v-if="loading" class="login-btn__spinner" />
           {{ loading ? 'Signing in…' : 'Sign in' }}
         </button>
       </form>
 
-      <RouterLink
-        to="/"
-        class="login-back"
-      >
-        ← Back to portfolio
-      </RouterLink>
+      <RouterLink to="/" class="login-back"> ← Back to portfolio </RouterLink>
     </div>
   </div>
 </template>
@@ -189,8 +161,13 @@ const form = ref({ username: '', password: '' })
   font-family: inherit;
 }
 
-.login-btn:hover:not(:disabled) { opacity: 0.88; }
-.login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.login-btn:hover:not(:disabled) {
+  opacity: 0.88;
+}
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 .login-btn__spinner {
   width: 1rem;
@@ -201,7 +178,11 @@ const form = ref({ username: '', password: '' })
   animation: spin 0.6s linear infinite;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .login-back {
   display: block;
@@ -213,5 +194,7 @@ const form = ref({ username: '', password: '' })
   transition: color 0.2s;
 }
 
-.login-back:hover { color: #5b21b6; }
+.login-back:hover {
+  color: #5b21b6;
+}
 </style>

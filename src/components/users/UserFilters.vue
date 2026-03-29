@@ -24,27 +24,11 @@ function clear() {
 </script>
 
 <template>
-  <form
-    class="filters"
-    @submit.prevent="submit"
-  >
-    <AppInput
-      v-model="name"
-      placeholder="Filter by name"
-    />
-    <AppInput
-      v-model="email"
-      placeholder="Filter by email"
-    />
-    <AppButton type="submit">
-      Search
-    </AppButton>
-    <AppButton
-      variant="secondary"
-      @click="clear"
-    >
-      Clear
-    </AppButton>
+  <form class="filters" @submit.prevent="submit">
+    <AppInput v-model="name" placeholder="Filter by name" />
+    <AppInput v-model="email" placeholder="Filter by email" />
+    <AppButton type="submit"> Search </AppButton>
+    <AppButton variant="secondary" @click="clear"> Clear </AppButton>
   </form>
 </template>
 

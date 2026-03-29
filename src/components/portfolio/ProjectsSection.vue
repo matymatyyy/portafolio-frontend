@@ -15,7 +15,9 @@ const visible = ref(projectsPerPage)
 const visibleProjects = computed(() => projects.value.slice(0, visible.value))
 const hasMore = computed(() => visible.value < projects.value.length)
 
-function showMore() { visible.value += projectsPerPage }
+function showMore() {
+  visible.value += projectsPerPage
+}
 
 const techColors: Record<string, [string, string]> = {
   php: ['#4f46e5', '#7c3aed'],
@@ -63,10 +65,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section
-    id="projects"
-    class="pf-section pf-projects"
-  >
+  <section id="projects" class="pf-section pf-projects">
     <div class="pf-container">
       <p class="pf-section__label pf-section__label--center reveal reveal--fade-up">
         {{ t('projects.label') }}
@@ -76,20 +75,11 @@ onMounted(async () => {
       </h2>
 
       <!-- Skeleton loading -->
-      <div
-        v-if="loading"
-        class="pf-projects__grid"
-      >
-        <SkeletonCard
-          v-for="n in 6"
-          :key="n"
-        />
+      <div v-if="loading" class="pf-projects__grid">
+        <SkeletonCard v-for="n in 6" :key="n" />
       </div>
 
-      <div
-        v-else
-        class="pf-projects__grid reveal-stagger"
-      >
+      <div v-else class="pf-projects__grid reveal-stagger">
         <article
           v-for="project in visibleProjects"
           :key="project.id"
@@ -98,9 +88,13 @@ onMounted(async () => {
           <div
             class="pf-project-card__thumb"
             aria-hidden="true"
-            :style="{ background: `linear-gradient(135deg, ${getProjectColors(project)[0]}, ${getProjectColors(project)[1]})` }"
+            :style="{
+              background: project.image_url
+                ? `url(${project.image_url}) center/cover no-repeat`
+                : `linear-gradient(135deg, ${getProjectColors(project)[0]}, ${getProjectColors(project)[1]})`,
+            }"
           >
-            <span class="pf-project-card__thumb-letter">{{ project.title.charAt(0) }}</span>
+            <span v-if="!project.image_url" class="pf-project-card__thumb-letter">{{ project.title.charAt(0) }}</span>
           </div>
           <div class="pf-project-card__body">
             <h3 class="pf-project-card__title">
@@ -110,11 +104,9 @@ onMounted(async () => {
               {{ project.description }}
             </p>
             <div class="pf-project-card__tags">
-              <span
-                v-for="tech in project.technologies"
-                :key="tech"
-                class="pf-tag"
-              >{{ tech }}</span>
+              <span v-for="tech in project.technologies" :key="tech" class="pf-tag">{{
+                tech
+              }}</span>
             </div>
           </div>
           <RouterLink
@@ -131,24 +123,14 @@ onMounted(async () => {
               stroke="currentColor"
               stroke-width="2"
             >
-              <path
-                d="M5 12h14M12 5l7 7-7 7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </RouterLink>
         </article>
       </div>
 
-      <div
-        v-if="hasMore"
-        class="pf-projects__more"
-      >
-        <button
-          class="pf-btn pf-btn--outline"
-          @click="showMore"
-        >
+      <div v-if="hasMore" class="pf-projects__more">
+        <button class="pf-btn pf-btn--outline" @click="showMore">
           {{ t('projects.showMore') }}
         </button>
       </div>
@@ -157,7 +139,9 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.pf-projects { background: var(--bg-alt); }
+.pf-projects {
+  background: var(--bg-alt);
+}
 .pf-projects__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -175,11 +159,13 @@ onMounted(async () => {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 .pf-project-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
 }
 .pf-project-card__thumb {
   height: 160px;
@@ -192,14 +178,30 @@ onMounted(async () => {
 .pf-project-card__thumb-letter {
   font-size: 4rem;
   font-weight: 900;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   text-transform: uppercase;
   user-select: none;
 }
-.pf-project-card__body { padding: 1.25rem; flex: 1; }
-.pf-project-card__title { font-size: 1.0625rem; font-weight: 700; margin: 0 0 0.5rem; }
-.pf-project-card__desc { font-size: 0.9rem; color: var(--fg-muted); line-height: 1.65; margin: 0 0 1rem; }
-.pf-project-card__tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.pf-project-card__body {
+  padding: 1.25rem;
+  flex: 1;
+}
+.pf-project-card__title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+.pf-project-card__desc {
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+  line-height: 1.65;
+  margin: 0 0 1rem;
+}
+.pf-project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
 .pf-project-card__link {
   display: flex;
   align-items: center;
@@ -210,19 +212,36 @@ onMounted(async () => {
   font-size: 0.875rem;
   font-weight: 600;
   gap: 0.375rem;
-  transition: gap var(--transition), color var(--transition);
+  transition:
+    gap var(--transition),
+    color var(--transition);
 }
-.pf-project-card__link:hover { gap: 0.625rem; }
+.pf-project-card__link:hover {
+  gap: 0.625rem;
+}
 
 @media (max-width: 1024px) {
-  .pf-projects__grid { grid-template-columns: repeat(2, 1fr); }
+  .pf-projects__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 640px) {
-  .pf-projects__grid { grid-template-columns: 1fr; gap: 1.25rem; }
-  .pf-project-card__thumb { height: 130px; }
-  .pf-project-card__thumb-letter { font-size: 3rem; }
-  .pf-project-card__body { padding: 1rem; }
-  .pf-project-card__desc { font-size: 0.875rem; }
+  .pf-projects__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .pf-project-card__thumb {
+    height: 130px;
+  }
+  .pf-project-card__thumb-letter {
+    font-size: 3rem;
+  }
+  .pf-project-card__body {
+    padding: 1rem;
+  }
+  .pf-project-card__desc {
+    font-size: 0.875rem;
+  }
 }
 </style>

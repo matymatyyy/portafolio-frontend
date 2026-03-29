@@ -1,4 +1,4 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig, AxiosError } from 'axios'
+import axios, { type AxiosError, type AxiosInstance, type AxiosRequestConfig } from 'axios'
 import type { ApiError } from '@/types/api'
 
 const http: AxiosInstance = axios.create({
@@ -24,8 +24,7 @@ http.interceptors.response.use(
       localStorage.removeItem('token')
       window.location.href = '/login'
     }
-    const message =
-      error.response?.data?.message ?? error.message ?? 'Unexpected error'
+    const message = error.response?.data?.message ?? error.message ?? 'Unexpected error'
     return Promise.reject(new Error(message))
   },
 )
@@ -35,12 +34,20 @@ export async function get<T>(url: string, config?: AxiosRequestConfig): Promise<
   return data
 }
 
-export async function post<T>(url: string, payload?: unknown, config?: AxiosRequestConfig): Promise<T> {
+export async function post<T>(
+  url: string,
+  payload?: unknown,
+  config?: AxiosRequestConfig,
+): Promise<T> {
   const { data } = await http.post<T>(url, payload, config)
   return data
 }
 
-export async function put<T>(url: string, payload?: unknown, config?: AxiosRequestConfig): Promise<T> {
+export async function put<T>(
+  url: string,
+  payload?: unknown,
+  config?: AxiosRequestConfig,
+): Promise<T> {
   const { data } = await http.put<T>(url, payload, config)
   return data
 }

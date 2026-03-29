@@ -1,5 +1,10 @@
 import { get, post, put, del } from '@/utils/api'
-import type { Project, CreateProjectPayload, UpdateProjectPayload, ProjectFilters } from '@/types/project'
+import type {
+  Project,
+  CreateProjectPayload,
+  UpdateProjectPayload,
+  ProjectFilters,
+} from '@/types/project'
 import type { PaginatedResponse } from '@/types/api'
 
 interface ListProjectsParams extends ProjectFilters {
@@ -26,5 +31,11 @@ export const projectService = {
 
   delete(id: string): Promise<void> {
     return del<void>(`/api/projects/${id}`)
+  },
+
+  uploadImage(file: File): Promise<{ url: string }> {
+    const form = new FormData()
+    form.append('file', file)
+    return post<{ url: string }>('/api/images', form)
   },
 }

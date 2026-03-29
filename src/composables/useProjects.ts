@@ -41,5 +41,14 @@ export function useProjects() {
 
   watch(pagination.page, fetchProjects)
 
-  return { projects, loading, error, filters, pagination, fetchProjects, applyFilters, deleteProject }
+  return {
+    projects,
+    loading,
+    error,
+    filters,
+    pagination,
+    fetchProjects,
+    applyFilters,
+    deleteProject,
+  }
 }

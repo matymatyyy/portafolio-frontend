@@ -18,10 +18,7 @@ function getJobs(): Job[] {
 </script>
 
 <template>
-  <section
-    id="experience"
-    class="pf-section pf-experience"
-  >
+  <section id="experience" class="pf-section pf-experience">
     <div class="pf-container">
       <p class="pf-section__label pf-section__label--center reveal reveal--fade-up">
         {{ t('experience.label') }}
@@ -55,11 +52,7 @@ function getJobs(): Job[] {
               {{ job.description }}
             </p>
             <div class="pf-timeline__tags">
-              <span
-                v-for="tech in job.technologies"
-                :key="tech"
-                class="pf-tag"
-              >{{ tech }}</span>
+              <span v-for="tech in job.technologies" :key="tech" class="pf-tag">{{ tech }}</span>
             </div>
           </div>
         </article>
@@ -69,7 +62,9 @@ function getJobs(): Job[] {
 </template>
 
 <style scoped>
-.pf-experience { background: var(--bg); }
+.pf-experience {
+  background: var(--bg);
+}
 
 .pf-timeline {
   position: relative;
@@ -114,7 +109,9 @@ function getJobs(): Job[] {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.5rem;
-  transition: box-shadow var(--transition), transform var(--transition);
+  transition:
+    box-shadow var(--transition),
+    transform var(--transition);
 }
 .pf-timeline__card:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -166,18 +163,43 @@ function getJobs(): Job[] {
 }
 
 @media (max-width: 768px) {
-  .pf-timeline { padding-left: 1.75rem; }
-  .pf-timeline__dot { left: -1.75rem; width: 14px; height: 14px; }
-  .pf-timeline__header { flex-direction: column; gap: 0.5rem; }
-  .pf-timeline__period { align-self: flex-start; }
-  .pf-timeline__card { padding: 1.25rem; }
+  .pf-timeline {
+    padding-left: 1.75rem;
+  }
+  .pf-timeline__dot {
+    left: -1.75rem;
+    width: 14px;
+    height: 14px;
+  }
+  .pf-timeline__header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .pf-timeline__period {
+    align-self: flex-start;
+  }
+  .pf-timeline__card {
+    padding: 1.25rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .pf-timeline { padding-left: 1.5rem; }
-  .pf-timeline__dot { left: -1.5rem; width: 12px; height: 12px; }
-  .pf-timeline__card { padding: 1rem; }
-  .pf-timeline__role { font-size: 1rem; }
-  .pf-timeline__desc { font-size: 0.875rem; }
+  .pf-timeline {
+    padding-left: 1.5rem;
+  }
+  .pf-timeline__dot {
+    left: -1.5rem;
+    width: 12px;
+    height: 12px;
+  }
+  .pf-timeline__card {
+    padding: 1rem;
+  }
+  .pf-timeline__role {
+    font-size: 1rem;
+  }
+  .pf-timeline__desc {
+    font-size: 0.875rem;
+  }
 }
 </style>

@@ -65,12 +65,20 @@
 }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 @media (max-width: 640px) {
-  .skeleton-card__thumb { height: 130px; }
-  .skeleton-card__body { padding: 1rem; }
+  .skeleton-card__thumb {
+    height: 130px;
+  }
+  .skeleton-card__body {
+    padding: 1rem;
+  }
 }
 </style>

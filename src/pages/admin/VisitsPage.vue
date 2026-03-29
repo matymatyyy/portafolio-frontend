@@ -45,12 +45,8 @@ function formatReferrer(ref: string): string {
     <!-- Header -->
     <div class="visits__header">
       <div>
-        <h1 class="visits__title">
-          Visitors
-        </h1>
-        <p class="visits__sub">
-          Traffic analytics for your portfolio
-        </p>
+        <h1 class="visits__title">Visitors</h1>
+        <p class="visits__sub">Traffic analytics for your portfolio</p>
       </div>
       <div class="visits__filters">
         <button
@@ -66,58 +62,43 @@ function formatReferrer(ref: string): string {
     </div>
 
     <!-- Loading -->
-    <div
-      v-if="loading"
-      class="visits__loading"
-    >
+    <div v-if="loading" class="visits__loading">
       <span class="visits__spinner" />
     </div>
 
     <!-- Error -->
-    <div
-      v-else-if="error"
-      class="visits__error"
-    >
+    <div v-else-if="error" class="visits__error">
       {{ error }}
-      <button
-        class="visits__retry"
-        @click="fetchStats"
-      >
-        Retry
-      </button>
+      <button class="visits__retry" @click="fetchStats">Retry</button>
     </div>
 
     <template v-else-if="stats">
       <!-- Stat cards -->
       <div class="visits__cards">
         <div class="stat-card">
-          <p class="stat-card__label">
-            Total Visits
-          </p>
+          <p class="stat-card__label">Total Visits</p>
           <p class="stat-card__value">
             {{ stats.total_visits.toLocaleString() }}
           </p>
         </div>
         <div class="stat-card">
-          <p class="stat-card__label">
-            Unique Visitors
-          </p>
+          <p class="stat-card__label">Unique Visitors</p>
           <p class="stat-card__value">
             {{ stats.unique_visitors.toLocaleString() }}
           </p>
         </div>
         <div class="stat-card">
-          <p class="stat-card__label">
-            Avg. per Day
-          </p>
+          <p class="stat-card__label">Avg. per Day</p>
           <p class="stat-card__value">
-            {{ stats.visits_by_day.length ? Math.round(stats.total_visits / stats.visits_by_day.length).toLocaleString() : '—' }}
+            {{
+              stats.visits_by_day.length
+                ? Math.round(stats.total_visits / stats.visits_by_day.length).toLocaleString()
+                : '—'
+            }}
           </p>
         </div>
         <div class="stat-card">
-          <p class="stat-card__label">
-            Pages Tracked
-          </p>
+          <p class="stat-card__label">Pages Tracked</p>
           <p class="stat-card__value">
             {{ Object.keys(stats.visits_by_page).length }}
           </p>
@@ -126,19 +107,10 @@ function formatReferrer(ref: string): string {
 
       <!-- Daily bar chart -->
       <div class="visits__panel">
-        <p class="visits__panel-title">
-          Visits per Day
-        </p>
-        <div
-          v-if="stats.visits_by_day.length"
-          class="chart"
-        >
+        <p class="visits__panel-title">Visits per Day</p>
+        <div v-if="stats.visits_by_day.length" class="chart">
           <div class="chart__bars">
-            <div
-              v-for="day in stats.visits_by_day"
-              :key="day.date"
-              class="chart__col"
-            >
+            <div v-for="day in stats.visits_by_day" :key="day.date" class="chart__col">
               <span class="chart__count">{{ day.count }}</span>
               <div
                 class="chart__bar"
@@ -149,38 +121,23 @@ function formatReferrer(ref: string): string {
             </div>
           </div>
         </div>
-        <p
-          v-else
-          class="visits__empty"
-        >
-          No data for this period.
-        </p>
+        <p v-else class="visits__empty">No data for this period.</p>
       </div>
 
       <!-- Pages + Referrers -->
       <div class="visits__grid2">
         <!-- By page -->
         <div class="visits__panel">
-          <p class="visits__panel-title">
-            Top Pages
-          </p>
-          <table
-            v-if="pageRows.length"
-            class="visits__table"
-          >
+          <p class="visits__panel-title">Top Pages</p>
+          <table v-if="pageRows.length" class="visits__table">
             <thead>
               <tr>
                 <th>Page</th>
-                <th class="visits__table-num">
-                  Visits
-                </th>
+                <th class="visits__table-num">Visits</th>
               </tr>
             </thead>
             <tbody>
-              <tr
-                v-for="[page, count] in pageRows"
-                :key="page"
-              >
+              <tr v-for="[page, count] in pageRows" :key="page">
                 <td class="visits__table-path">
                   {{ page }}
                 </td>
@@ -190,36 +147,21 @@ function formatReferrer(ref: string): string {
               </tr>
             </tbody>
           </table>
-          <p
-            v-else
-            class="visits__empty"
-          >
-            No page data yet.
-          </p>
+          <p v-else class="visits__empty">No page data yet.</p>
         </div>
 
         <!-- Top referrers -->
         <div class="visits__panel">
-          <p class="visits__panel-title">
-            Top Referrers
-          </p>
-          <table
-            v-if="referrerRows.length"
-            class="visits__table"
-          >
+          <p class="visits__panel-title">Top Referrers</p>
+          <table v-if="referrerRows.length" class="visits__table">
             <thead>
               <tr>
                 <th>Source</th>
-                <th class="visits__table-num">
-                  Visits
-                </th>
+                <th class="visits__table-num">Visits</th>
               </tr>
             </thead>
             <tbody>
-              <tr
-                v-for="row in referrerRows"
-                :key="row.referrer"
-              >
+              <tr v-for="row in referrerRows" :key="row.referrer">
                 <td class="visits__table-path">
                   {{ formatReferrer(row.referrer) }}
                 </td>
@@ -229,12 +171,7 @@ function formatReferrer(ref: string): string {
               </tr>
             </tbody>
           </table>
-          <p
-            v-else
-            class="visits__empty"
-          >
-            No referrer data yet.
-          </p>
+          <p v-else class="visits__empty">No referrer data yet.</p>
         </div>
       </div>
     </template>
@@ -284,12 +221,22 @@ function formatReferrer(ref: string): string {
   background: #fff;
   color: #6b7280;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s,
+    background 0.15s;
   font-family: inherit;
 }
 
-.visits__filter-btn:hover { border-color: #5b21b6; color: #5b21b6; }
-.visits__filter-btn--active { background: #5b21b6; border-color: #5b21b6; color: #fff; }
+.visits__filter-btn:hover {
+  border-color: #5b21b6;
+  color: #5b21b6;
+}
+.visits__filter-btn--active {
+  background: #5b21b6;
+  border-color: #5b21b6;
+  color: #fff;
+}
 
 /* Loading / error */
 .visits__loading {
@@ -308,7 +255,11 @@ function formatReferrer(ref: string): string {
   animation: spin 0.7s linear infinite;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .visits__error {
   display: flex;
@@ -434,7 +385,9 @@ function formatReferrer(ref: string): string {
   cursor: default;
 }
 
-.chart__bar:hover { opacity: 0.75; }
+.chart__bar:hover {
+  opacity: 0.75;
+}
 
 .chart__label {
   font-size: 0.6875rem;
@@ -468,9 +421,13 @@ function formatReferrer(ref: string): string {
   color: #374151;
 }
 
-.visits__table tr:last-child td { border-bottom: none; }
+.visits__table tr:last-child td {
+  border-bottom: none;
+}
 
-.visits__table-num { text-align: right; }
+.visits__table-num {
+  text-align: right;
+}
 
 .visits__table-path {
   font-family: 'Menlo', 'Consolas', monospace;
@@ -500,6 +457,8 @@ function formatReferrer(ref: string): string {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .visits__grid2 { grid-template-columns: 1fr; }
+  .visits__grid2 {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
