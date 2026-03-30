@@ -57,7 +57,7 @@ onMounted(async () => {
   loading.value = true
   try {
     const result = await projectService.list({ status: 'active', limit: 100 })
-    projects.value = result.data
+    projects.value = result.data.sort((a, b) => a.sort_order - b.sort_order)
   } finally {
     loading.value = false
   }

@@ -7,6 +7,7 @@ export interface Project {
   project_url: string | null
   repo_url: string | null
   technologies: string[]
+  sort_order: number
   status: 'active' | 'archived'
   created_at: string
   updated_at: string
@@ -19,6 +20,7 @@ export interface CreateProjectPayload {
   projectUrl?: string | null
   repoUrl?: string | null
   technologies: string[]
+  sortOrder?: number
   status: 'active' | 'archived'
 }
 

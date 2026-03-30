@@ -80,6 +80,7 @@ function clearSearch() {
         <table class="table">
           <thead>
             <tr>
+              <th>Order</th>
               <th>Title</th>
               <th>Slug</th>
               <th>Technologies</th>
@@ -90,12 +91,15 @@ function clearSearch() {
           </thead>
           <tbody>
             <tr v-if="loading">
-              <td colspan="6" class="table__empty">Loading…</td>
+              <td colspan="7" class="table__empty">Loading…</td>
             </tr>
             <tr v-else-if="projects.length === 0">
-              <td colspan="6" class="table__empty">No projects found.</td>
+              <td colspan="7" class="table__empty">No projects found.</td>
             </tr>
             <tr v-for="project in projects" :key="project.id">
+              <td class="table__order">
+                {{ project.sort_order }}
+              </td>
               <td class="table__title">
                 {{ project.title }}
               </td>
@@ -259,6 +263,12 @@ function clearSearch() {
 .table__actions {
   display: flex;
   gap: 0.5rem;
+}
+.table__order {
+  font-weight: 600;
+  color: #5b21b6;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 .table__title {
   font-weight: 600;

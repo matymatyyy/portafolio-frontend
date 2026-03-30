@@ -19,6 +19,7 @@ const form = ref({
   projectUrl: '',
   repoUrl: '',
   technologies: '',
+  sortOrder: 0,
   status: 'active' as 'active' | 'archived',
 })
 
@@ -44,6 +45,7 @@ onMounted(async () => {
     form.value.projectUrl = project.project_url ?? ''
     form.value.repoUrl = project.repo_url ?? ''
     form.value.technologies = project.technologies.join(', ')
+    form.value.sortOrder = project.sort_order ?? 0
     form.value.status = project.status
   } catch {
     serverError.value = 'Failed to load project'
@@ -121,6 +123,7 @@ async function submit() {
       projectUrl: form.value.projectUrl || null,
       repoUrl: form.value.repoUrl || null,
       technologies: parseTechnologies(),
+      sortOrder: Number(form.value.sortOrder) || 0,
       status: form.value.status,
     }
     if (isEditing.value) {
@@ -257,6 +260,19 @@ async function submit() {
         />
 
         <div class="field">
+          <label class="field__label" for="pf-sort-order">Sort Order</label>
+          <input
+            id="pf-sort-order"
+            v-model.number="form.sortOrder"
+            type="number"
+            min="0"
+            class="field__input"
+            placeholder="0"
+          />
+          <span class="field__hint">Lower number = appears first. Default is 0.</span>
+        </div>
+
+        <div class="field">
           <label class="field__label" for="pf-status">Status</label>
           <select id="pf-status" v-model="form.status" class="field__select">
             <option value="active">Active</option>
@@ -340,6 +356,7 @@ async function submit() {
   color: #374151;
 }
 
+.field__input,
 .field__textarea,
 .field__select {
   padding: 0.5rem 0.875rem;
@@ -355,6 +372,7 @@ async function submit() {
   resize: vertical;
 }
 
+.field__input:focus,
 .field__textarea:focus,
 .field__select:focus {
   border-color: #5b21b6;
@@ -369,6 +387,10 @@ async function submit() {
 .field__error {
   font-size: 0.75rem;
   color: #ef4444;
+}
+.field__hint {
+  font-size: 0.75rem;
+  color: #9ca3af;
 }
 
 /* ─── Image upload ─── */
