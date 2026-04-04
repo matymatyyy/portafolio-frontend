@@ -44,7 +44,7 @@ export default {
       {
         role: 'Full Stack Developer',
         company: 'VarCreative',
-        start: '2024',
+        start: '2025',
         end: '',
         description:
           'Building backend services with Symfony, integrating reactive interfaces with Vue.js, and deploying on OpenShift environments. Focused on hexagonal architecture, automated testing, and CI/CD pipelines.',
